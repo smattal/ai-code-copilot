@@ -61,21 +61,29 @@ function openInBrowser(filePath: string): void {
   });
 }
 
+function saveScanResults(results: any, outputPath: string | undefined): void {
+  if (outputPath) {
+    fs.writeFileSync(outputPath, JSON.stringify(results, null, 2), 'utf8');
+    logger.success(`Consolidated report written to: ${outputPath}`);
+  }
+}
+
+function generateAndOpenHTMLReport(results: any, htmlPath: string, shouldOpen: boolean): void {
+  generateHTMLReport(results, htmlPath);
+  
+  if (shouldOpen) {
+    openInBrowser(htmlPath);
+  }
+}
+
 export async function handleScan(args: ScanArgs): Promise<void> {
   const results = await scanAndReport(args.path);
   const redactedResults = redactSecretsInObject(results);
   
-  if (args.out) {
-    fs.writeFileSync(args.out, JSON.stringify(redactedResults, null, 2), 'utf8');
-    logger.success(`Consolidated report written to: ${args.out}`);
-  }
+  saveScanResults(redactedResults, args.out);
   
   if (args.html) {
-    generateHTMLReport(redactedResults, args.html);
-    
-    if (args.open) {
-      openInBrowser(args.html);
-    }
+    generateAndOpenHTMLReport(redactedResults, args.html, args.open);
   }
   
   if (!args.out && !args.html) {
@@ -104,42 +112,68 @@ export async function handleApplyFix(args: ApplyFixArgs): Promise<void> {
   logger.success(`Patch written to: ${out}`);
 }
 
-export async function handleVerify(args: VerifyArgs): Promise<void> {
-  let beforeResults, afterResults;
-
+async function loadScanResults(args: VerifyArgs): Promise<{ before: any; after: any } | null> {
   if (args.before && args.after) {
     logger.info('Loading scan results...');
-    beforeResults = JSON.parse(fs.readFileSync(args.before, 'utf8'));
-    afterResults = JSON.parse(fs.readFileSync(args.after, 'utf8'));
-  } else {
-    logger.info('Running initial scan (BEFORE)...');
-    beforeResults = await scanAndReport(args.path);
-    
-    const beforePath = 'scan-before.json';
-    fs.writeFileSync(beforePath, JSON.stringify(beforeResults, null, 2), 'utf8');
-    logger.success(`Before scan saved to: ${beforePath}`);
-    
-    logger.warning('Please apply the suggested fixes to your files.');
-    logger.info('   Then run: npm start verify -- --before scan-before.json --after <path-to-after-scan.json>');
-    logger.info('   Or manually run another scan after applying fixes.\n');
-    return;
+    const before = JSON.parse(fs.readFileSync(args.before, 'utf8'));
+    const after = JSON.parse(fs.readFileSync(args.after, 'utf8'));
+    return { before, after };
   }
+  
+  logger.info('Running initial scan (BEFORE)...');
+  const beforeResults = await scanAndReport(args.path);
+  
+  const beforePath = 'scan-before.json';
+  fs.writeFileSync(beforePath, JSON.stringify(beforeResults, null, 2), 'utf8');
+  logger.success(`Before scan saved to: ${beforePath}`);
+  
+  logger.warning('Please apply the suggested fixes to your files.');
+  logger.info('   Then run: npm start verify -- --before scan-before.json --after <path-to-after-scan.json>');
+  logger.info('   Or manually run another scan after applying fixes.\n');
+  return null;
+}
+
+function generateAndSaveComparisonReport(comparison: any, htmlPath: string, shouldOpen: boolean): void {
+  const htmlContent = generateComparisonHTML(comparison);
+  fs.writeFileSync(htmlPath, htmlContent, 'utf8');
+  logger.success(`HTML comparison report generated: ${htmlPath}`);
+
+  if (shouldOpen) {
+    openInBrowser(htmlPath);
+  }
+}
+
+export async function handleVerify(args: VerifyArgs): Promise<void> {
+  const results = await loadScanResults(args);
+  if (!results) return;
 
   logger.info('Calculating improvements...');
-  const beforeMetrics = calculateMetrics(beforeResults);
-  const afterMetrics = calculateMetrics(afterResults);
+  const beforeMetrics = calculateMetrics(results.before);
+  const afterMetrics = calculateMetrics(results.after);
   const comparison = compareMetrics(beforeMetrics, afterMetrics);
 
   logger.info(formatComparisonSummary(comparison));
 
   if (args.html) {
-    const htmlContent = generateComparisonHTML(comparison);
-    fs.writeFileSync(args.html, htmlContent, 'utf8');
-    logger.success(`HTML comparison report generated: ${args.html}`);
+    generateAndSaveComparisonReport(comparison, args.html, args.open);
+  }
+}
 
-    if (args.open) {
-      openInBrowser(args.html);
-    }
+function saveQualityMetrics(metrics: any, jsonPath: string | undefined): void {
+  const defaultJsonPath = jsonPath || 'code-quality-metrics.json';
+  fs.writeFileSync(defaultJsonPath, JSON.stringify(metrics, null, 2), 'utf8');
+  if (jsonPath) {
+    logger.success(`Metrics saved to: ${jsonPath}`);
+  }
+}
+
+function generateAndSaveQualityReport(metrics: any, htmlPath: string, shouldOpen: boolean): void {
+  const htmlContent = generateCodeQualityHTML(metrics);
+  fs.writeFileSync(htmlPath, htmlContent, 'utf8');
+  logger.success(`HTML report generated: ${htmlPath}`);
+
+  if (shouldOpen) {
+    openInBrowser(htmlPath);
   }
 }
 
@@ -151,20 +185,9 @@ export async function handleQuality(args: QualityArgs): Promise<void> {
 
   logger.info(generateCodeQualityReport(metrics));
 
-  // Always save metrics to default JSON file for analysis
-  const defaultJsonPath = args.json || 'code-quality-metrics.json';
-  fs.writeFileSync(defaultJsonPath, JSON.stringify(metrics, null, 2), 'utf8');
-  if (args.json) {
-    logger.success(`Metrics saved to: ${args.json}`);
-  }
+  saveQualityMetrics(metrics, args.json);
 
   if (args.html) {
-    const htmlContent = generateCodeQualityHTML(metrics);
-    fs.writeFileSync(args.html, htmlContent, 'utf8');
-    logger.success(`HTML report generated: ${args.html}`);
-
-    if (args.open) {
-      openInBrowser(args.html);
-    }
+    generateAndSaveQualityReport(metrics, args.html, args.open);
   }
 }

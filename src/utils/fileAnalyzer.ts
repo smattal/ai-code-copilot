@@ -69,6 +69,22 @@ export class FileAnalyzer {
     };
   }
 
+  private isBlankLine(trimmed: string): boolean {
+    return !trimmed;
+  }
+
+  private isSingleLineComment(trimmed: string): boolean {
+    return trimmed.startsWith('//');
+  }
+
+  private startsBlockComment(trimmed: string): boolean {
+    return trimmed.startsWith('/*');
+  }
+
+  private endsBlockComment(trimmed: string): boolean {
+    return trimmed.endsWith('*/');
+  }
+
   private countLineTypes(lines: string[]): { code: number; comment: number; blank: number } {
     let code = 0;
     let comment = 0;
@@ -77,19 +93,20 @@ export class FileAnalyzer {
 
     for (const line of lines) {
       const trimmed = line.trim();
-      if (!trimmed) {
+      
+      if (this.isBlankLine(trimmed)) {
         blank++;
-      } else if (trimmed.startsWith('//')) {
+      } else if (this.isSingleLineComment(trimmed)) {
         comment++;
-      } else if (trimmed.startsWith('/*')) {
+      } else if (this.startsBlockComment(trimmed)) {
         comment++;
         inBlockComment = true;
-        if (trimmed.endsWith('*/') && trimmed.length > 4) {
+        if (this.endsBlockComment(trimmed) && trimmed.length > 4) {
           inBlockComment = false;
         }
       } else if (inBlockComment) {
         comment++;
-        if (trimmed.endsWith('*/')) {
+        if (this.endsBlockComment(trimmed)) {
           inBlockComment = false;
         }
       } else {
@@ -116,6 +133,40 @@ export class FileAnalyzer {
     return matches.length + 1;
   }
 
+  private checkFileSizeIssue(codeLines: number, issues: string[]): void {
+    if (codeLines > 500) {
+      issues.push('File is too large (>500 lines)');
+    }
+  }
+
+  private checkComplexityIssue(complexity: number, issues: string[]): void {
+    if (complexity > 20) {
+      issues.push(`High complexity (${complexity})`);
+    }
+  }
+
+  private checkFunctionCountIssue(functions: number, issues: string[]): void {
+    if (functions > 30) {
+      issues.push('Too many functions in one file');
+    }
+  }
+
+  private checkAnyTypeIssue(content: string, filePath: string, issues: string[]): void {
+    if (this.hasAnyTypeAnnotation(content, filePath)) {
+      issues.push('Uses "any" type');
+    }
+  }
+
+  private checkConsoleLogIssue(content: string, filePath: string, issues: string[]): void {
+    const isExcluded = filePath.includes('test') || 
+                       filePath.includes('logger.ts') || 
+                       filePath.includes('fileAnalyzer.ts');
+    
+    if (content.includes('console.log') && !isExcluded) {
+      issues.push('Contains console.log statements');
+    }
+  }
+
   private detectIssues(
     content: string, 
     filePath: string, 
@@ -125,23 +176,11 @@ export class FileAnalyzer {
   ): string[] {
     const issues: string[] = [];
 
-    if (codeLines > 500) {
-      issues.push('File is too large (>500 lines)');
-    }
-    if (complexity > 20) {
-      issues.push(`High complexity (${complexity})`);
-    }
-    if (functions > 30) {
-      issues.push('Too many functions in one file');
-    }
-    
-    if (this.hasAnyTypeAnnotation(content, filePath)) {
-      issues.push('Uses "any" type');
-    }
-    
-    if (content.includes('console.log') && !filePath.includes('test') && !filePath.includes('logger.ts') && !filePath.includes('fileAnalyzer.ts')) {
-      issues.push('Contains console.log statements');
-    }
+    this.checkFileSizeIssue(codeLines, issues);
+    this.checkComplexityIssue(complexity, issues);
+    this.checkFunctionCountIssue(functions, issues);
+    this.checkAnyTypeIssue(content, filePath, issues);
+    this.checkConsoleLogIssue(content, filePath, issues);
 
     return issues;
   }
