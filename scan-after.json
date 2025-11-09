@@ -1,0 +1,72 @@
+[
+  {
+    "fileName": "sample_input/react_components/user-profile-widget-0001.tsx",
+    "fileType": "TSX",
+    "isValid": true,
+    "issues": [
+      {
+        "category": "structure",
+        "description": "Literal text \"View Profile\" may be missing localization",
+        "severity": "medium"
+      }
+    ],
+    "aiSuggestedPatches": [
+      {
+        "diff": "Wrap text with t('key')",
+        "rationale": "Use i18n for translatable UI strings."
+      }
+    ],
+    "rationale": "Automatically generated React component test case."
+  },
+  {
+    "fileName": "sample_input/react_components/user-profile-widget-0002.tsx",
+    "fileType": "TSX",
+    "isValid": true,
+    "issues": [],
+    "aiSuggestedPatches": [],
+    "rationale": "Automatically generated React component test case."
+  },
+  {
+    "fileName": "sample_input/stylesheets/marketing-landing-0005.css",
+    "fileType": "CSS",
+    "isValid": true,
+    "issues": [
+      {
+        "category": "structure",
+        "description": "Color #aaa has low contrast against #fff",
+        "severity": "low"
+      }
+    ],
+    "aiSuggestedPatches": [
+      {
+        "diff": "Use design token color with sufficient contrast",
+        "rationale": "Meets WCAG AA contrast ratio."
+      }
+    ],
+    "rationale": "Automatically generated CSS test case."
+  },
+  {
+    "fileName": "sample_input/stylesheets/marketing-landing-0006.css",
+    "fileType": "CSS",
+    "isValid": true,
+    "issues": [],
+    "aiSuggestedPatches": [],
+    "rationale": "Automatically generated CSS test case."
+  },
+  {
+    "fileName": "sample_input/web_components/internal-dashboard-0001.html",
+    "fileType": "HTML",
+    "isValid": true,
+    "issues": [],
+    "aiSuggestedPatches": [],
+    "rationale": "Automatically generated test case for evaluator pipelines."
+  },
+  {
+    "fileName": "sample_input/web_components/internal-dashboard-0004.html",
+    "fileType": "HTML",
+    "isValid": true,
+    "issues": [],
+    "aiSuggestedPatches": [],
+    "rationale": "Automatically generated test case for evaluator pipelines."
+  }
+]

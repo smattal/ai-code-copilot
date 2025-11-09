@@ -1,0 +1,7 @@
+/* Styles for marketing-landing-0005 (intentionally using direct color values to simulate design violation) */
+.marketing-landing-0005-widget {
+    background: #fff;
+    color: #aaa; /* poor contrast */
+    font-size: 16px;
+    padding: 10px;
+}

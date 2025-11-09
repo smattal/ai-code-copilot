@@ -1,0 +1,459 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Code Quality Report - ai-code-copilot</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 40px 20px;
+      min-height: 100vh;
+    }
+    .container { max-width: 1400px; margin: 0 auto; }
+    .header {
+      background: white;
+      padding: 50px;
+      border-radius: 20px;
+      margin-bottom: 30px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      text-align: center;
+    }
+    .grade-circle {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: #ff5722;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 60px;
+      font-weight: bold;
+      margin: 0 auto 20px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+    .score {
+      font-size: 24px;
+      color: #666;
+      margin-top: 10px;
+    }
+    h1 { font-size: 36px; color: #333; margin-bottom: 10px; }
+    .section {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      margin-bottom: 30px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    .section h2 {
+      font-size: 24px;
+      color: #333;
+      margin-bottom: 20px;
+      border-bottom: 3px solid #667eea;
+      padding-bottom: 10px;
+    }
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .metric-box {
+      background: #f8f9fa;
+      padding: 20px;
+      border-radius: 12px;
+      border-left: 4px solid #667eea;
+    }
+    .metric-label {
+      font-size: 14px;
+      color: #666;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    .metric-value {
+      font-size: 32px;
+      font-weight: bold;
+      color: #333;
+    }
+    .progress-bar {
+      width: 100%;
+      height: 30px;
+      background: #e0e0e0;
+      border-radius: 15px;
+      overflow: hidden;
+      margin: 10px 0;
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      transition: width 0.5s ease;
+    }
+    .file-list {
+      max-height: 300px;
+      overflow-y: auto;
+      background: #f8f9fa;
+      padding: 15px;
+      border-radius: 8px;
+    }
+    .file-item {
+      padding: 10px;
+      border-bottom: 1px solid #e0e0e0;
+      font-family: monospace;
+      font-size: 13px;
+    }
+    .recommendations {
+      background: #fff3cd;
+      border-left: 4px solid #ffc107;
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+    .recommendations li {
+      margin: 10px 0;
+      padding-left: 10px;
+    }
+    .badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: bold;
+      margin: 0 5px;
+    }
+    .badge-success { background: #4caf50; color: white; }
+    .badge-warning { background: #ff9800; color: white; }
+    .badge-danger { background: #f44336; color: white; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    th {
+      background: #f8f9fa;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="grade-circle">D</div>
+      <h1>Code Quality Report</h1>
+      <div class="score">48/100 Points</div>
+      <p style="color: #666; margin-top: 10px;">ai-code-copilot</p>
+      <p style="color: #999; font-size: 14px;">Generated on 11/9/2025, 9:21:35 AM</p>
+    </div>
+
+    <div class="section">
+      <h2>📊 Project Overview</h2>
+      <div class="metrics-grid">
+        <div class="metric-box">
+          <div class="metric-label">Total Files</div>
+          <div class="metric-value">32</div>
+        </div>
+        <div class="metric-box">
+          <div class="metric-label">Lines of Code</div>
+          <div class="metric-value">3,674</div>
+        </div>
+        <div class="metric-box">
+          <div class="metric-label">Comment Lines</div>
+          <div class="metric-value">145</div>
+        </div>
+        <div class="metric-box">
+          <div class="metric-label">Languages</div>
+          <div class="metric-value">5</div>
+        </div>
+      </div>
+      
+      <h3 style="margin-top: 30px; margin-bottom: 15px;">Language Distribution</h3>
+      
+        <div style="margin-bottom: 10px;">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+            <span>JavaScript</span>
+            <span>1 files</span>
+          </div>
+          <div class="progress-bar" style="height: 20px;">
+            <div class="progress-fill" style="width: 3.125%"></div>
+          </div>
+        </div>
+      
+        <div style="margin-bottom: 10px;">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+            <span>HTML</span>
+            <span>4 files</span>
+          </div>
+          <div class="progress-bar" style="height: 20px;">
+            <div class="progress-fill" style="width: 12.5%"></div>
+          </div>
+        </div>
+      
+        <div style="margin-bottom: 10px;">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+            <span>TypeScript JSX</span>
+            <span>2 files</span>
+          </div>
+          <div class="progress-bar" style="height: 20px;">
+            <div class="progress-fill" style="width: 6.25%"></div>
+          </div>
+        </div>
+      
+        <div style="margin-bottom: 10px;">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+            <span>CSS</span>
+            <span>2 files</span>
+          </div>
+          <div class="progress-bar" style="height: 20px;">
+            <div class="progress-fill" style="width: 6.25%"></div>
+          </div>
+        </div>
+      
+        <div style="margin-bottom: 10px;">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+            <span>TypeScript</span>
+            <span>23 files</span>
+          </div>
+          <div class="progress-bar" style="height: 20px;">
+            <div class="progress-fill" style="width: 71.875%"></div>
+          </div>
+        </div>
+      
+    </div>
+
+    <div class="section">
+      <h2>🧩 Code Complexity</h2>
+      <div class="metrics-grid">
+        <div class="metric-box">
+          <div class="metric-label">Average Complexity</div>
+          <div class="metric-value">9.5</div>
+          <span class="badge badge-success">
+            Excellent
+          </span>
+        </div>
+        <div class="metric-box">
+          <div class="metric-label">Max Complexity</div>
+          <div class="metric-value">61</div>
+        </div>
+        <div class="metric-box">
+          <div class="metric-label">Files Over Threshold</div>
+          <div class="metric-value">6</div>
+        </div>
+      </div>
+
+      
+      <h3 style="margin-top: 30px; margin-bottom: 15px;">Most Complex Files</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>File</th>
+            <th>Complexity</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+            <tr>
+              <td style="font-family: monospace; font-size: 12px;">src\utils\codeQualityReport.ts</td>
+              <td><strong>61</strong></td>
+              <td><span class="badge badge-warning">Review</span></td>
+            </tr>
+          
+            <tr>
+              <td style="font-family: monospace; font-size: 12px;">src\cli.ts</td>
+              <td><strong>31</strong></td>
+              <td><span class="badge badge-warning">Review</span></td>
+            </tr>
+          
+            <tr>
+              <td style="font-family: monospace; font-size: 12px;">src\scanner\index.ts</td>
+              <td><strong>29</strong></td>
+              <td><span class="badge badge-warning">Review</span></td>
+            </tr>
+          
+            <tr>
+              <td style="font-family: monospace; font-size: 12px;">src\patcher\patchGenerator.ts</td>
+              <td><strong>23</strong></td>
+              <td><span class="badge badge-warning">Review</span></td>
+            </tr>
+          
+            <tr>
+              <td style="font-family: monospace; font-size: 12px;">src\utils\cache.ts</td>
+              <td><strong>16</strong></td>
+              <td><span class="badge badge-warning">Review</span></td>
+            </tr>
+          
+        </tbody>
+      </table>
+      
+    </div>
+
+    <div class="section">
+      <h2>🔧 Maintainability</h2>
+      <div style="margin-bottom: 20px;">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+          <span style="font-size: 18px; font-weight: 600;">Maintainability Score</span>
+          <span style="font-size: 24px; font-weight: bold; color: #f44336">
+            40/100
+          </span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: 40%; background: #f44336">
+            40%
+          </div>
+        </div>
+      </div>
+
+      
+      <h3 style="margin-top: 30px; margin-bottom: 15px;">⚠️ Code Smells Detected</h3>
+      <ul style="list-style: none; padding: 0;">
+        
+          <li style="padding: 10px; background: #fff3cd; border-left: 4px solid #ffc107; margin-bottom: 8px; border-radius: 4px;">
+            File is too large (>500 lines)
+          </li>
+        
+          <li style="padding: 10px; background: #fff3cd; border-left: 4px solid #ffc107; margin-bottom: 8px; border-radius: 4px;">
+            Contains console.log statements
+          </li>
+        
+          <li style="padding: 10px; background: #fff3cd; border-left: 4px solid #ffc107; margin-bottom: 8px; border-radius: 4px;">
+            High complexity (31)
+          </li>
+        
+          <li style="padding: 10px; background: #fff3cd; border-left: 4px solid #ffc107; margin-bottom: 8px; border-radius: 4px;">
+            Uses "any" type
+          </li>
+        
+          <li style="padding: 10px; background: #fff3cd; border-left: 4px solid #ffc107; margin-bottom: 8px; border-radius: 4px;">
+            High complexity (23)
+          </li>
+        
+          <li style="padding: 10px; background: #fff3cd; border-left: 4px solid #ffc107; margin-bottom: 8px; border-radius: 4px;">
+            High complexity (29)
+          </li>
+        
+          <li style="padding: 10px; background: #fff3cd; border-left: 4px solid #ffc107; margin-bottom: 8px; border-radius: 4px;">
+            High complexity (61)
+          </li>
+        
+      </ul>
+      
+    </div>
+
+    <div class="section">
+      <h2>🧪 Test Coverage</h2>
+      <div class="metrics-grid">
+        <div class="metric-box">
+          <div class="metric-label">Test Files</div>
+          <div class="metric-value">1</div>
+        </div>
+        <div class="metric-box">
+          <div class="metric-label">Test-to-Code Ratio</div>
+          <div class="metric-value">0.03</div>
+        </div>
+        <div class="metric-box">
+          <div class="metric-label">Estimated Coverage</div>
+          <div class="metric-value">3%</div>
+          <span class="badge badge-danger">
+            Low
+          </span>
+        </div>
+      </div>
+      <div style="margin-top: 20px;">
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: 3%; background: #ff9800">
+            3%
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>📦 Dependencies</h2>
+      <div class="metrics-grid">
+        <div class="metric-box">
+          <div class="metric-label">Total Dependencies</div>
+          <div class="metric-value">15</div>
+        </div>
+        <div class="metric-box">
+          <div class="metric-label">Production</div>
+          <div class="metric-value">7</div>
+        </div>
+        <div class="metric-box">
+          <div class="metric-label">Development</div>
+          <div class="metric-value">8</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>✨ Best Practices</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Practice</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>README Documentation</td>
+            <td>✅ Yes</td>
+          </tr>
+          <tr>
+            <td>License File</td>
+            <td>✅ Yes</td>
+          </tr>
+          <tr>
+            <td>.gitignore</td>
+            <td>✅ Yes</td>
+          </tr>
+          <tr>
+            <td>TypeScript</td>
+            <td>✅ Yes</td>
+          </tr>
+          <tr>
+            <td>Code Linting</td>
+            <td>❌ No</td>
+          </tr>
+          <tr>
+            <td>Testing Framework</td>
+            <td>✅ Yes</td>
+          </tr>
+          <tr>
+            <td>CI/CD Pipeline</td>
+            <td>❌ No</td>
+          </tr>
+          <tr>
+            <td>Documentation</td>
+            <td>❌ No</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <h2>💡 Recommendations</h2>
+      <div class="recommendations">
+        <ul>
+          <li>📌 Increase test coverage to at least 70%</li><li>📌 Add ESLint for code quality checks</li><li>📌 Set up CI/CD pipeline for automated testing</li><li>📌 Add comprehensive documentation</li><li>📌 Refactor code to improve maintainability</li><li>📌 Address code smells to improve code quality</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+  

@@ -1,0 +1,1 @@
+{"fileName":"web_components/internal-dashboard-0004.html","fileType":"HTML","isValid":true,"issues":[{"category":"accessibility","description":"Image tag is missing alt text","severity":"medium"}],"aiSuggestedPatches":[{"diff":"Suggested fix: img-alt-missing","rationale":"Internal dashboard hero"}],"rationale":"Automatically generated test case for evaluator pipelines."}
