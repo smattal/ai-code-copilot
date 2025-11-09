@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="http://example.com/script.js"></script>
+    <script>
+        eval('console.log("test")');
+    </script>
+    <style>
+        .unused-class { color: red; }
+        .color-test { color: #aaa; background: #fff; }
+    </style>
+</head>
+<body>
+    <div onclick="alert('test')">
+        <img src="large-image.jpg">
+        <a href="#" target="_blank">Link</a>
+        <input type="text">
+        <button></button>
+        <p>
+            <div>Invalid nesting</div>
+        </p>
+        <a href="/en/page">English Page</a>
+        <div id="test"></div>
+        <div id="test"></div>
+        <li>Item outside list</li>
+    </div>
+</body>
+</html>

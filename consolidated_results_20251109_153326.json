@@ -1,0 +1,39 @@
+[
+  {
+    "fileName": "sample_input/react_components/user-profile-widget-0001.tsx",
+    "fileType": "TSX",
+    "isValid": true,
+    "issues": [
+      {
+        "category": "accessibility",
+        "description": "Image tag is missing alt text",
+        "severity": "medium"
+      },
+      {
+        "category": "structure",
+        "description": "Anchor opens in new tab without rel=\"noopener\"",
+        "severity": "medium"
+      },
+      {
+        "category": "structure",
+        "description": "Literal text \"View Profile\" may be missing localization",
+        "severity": "medium"
+      }
+    ],
+    "aiSuggestedPatches": [
+      {
+        "diff": "Add alt attribute",
+        "rationale": "Provide descriptive alt text for accessibility."
+      },
+      {
+        "diff": "Add rel=\"noopener noreferrer\"",
+        "rationale": "Prevent reverse tabnabbing and improve security."
+      },
+      {
+        "diff": "Wrap text with t('key')",
+        "rationale": "Use i18n for translatable UI strings."
+      }
+    ],
+    "rationale": "Automatically generated React component test case."
+  }
+]

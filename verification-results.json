@@ -1,0 +1,960 @@
+[
+  {
+    "fileName": "sample_input/react_components/test-component.tsx",
+    "fileType": "TSX",
+    "isValid": false,
+    "issues": [
+      {
+        "category": "accessibility",
+        "description": "Image tag is missing alt text (WCAG 2.2 AA)",
+        "severity": "high"
+      },
+      {
+        "category": "performance",
+        "description": "Image src \"large-image.jpg\" may be large or unoptimized",
+        "severity": "low"
+      },
+      {
+        "category": "accessibility",
+        "description": "Image has empty alt text (WCAG 2.2 AA)",
+        "severity": "medium"
+      },
+      {
+        "category": "accessibility",
+        "description": "Low color contrast (color: #aaa on #fff) - WCAG 2.2 AA violation",
+        "severity": "high"
+      },
+      {
+        "category": "accessibility",
+        "description": "Missing lang attribute on <html> (WCAG 2.2 AA)",
+        "severity": "high"
+      },
+      {
+        "category": "structure",
+        "description": "Form input missing associated label (WCAG 2.2 AA)",
+        "severity": "high"
+      },
+      {
+        "category": "structure",
+        "description": "Button has no text or aria-label (WCAG 2.2 AA)",
+        "severity": "high"
+      },
+      {
+        "category": "structure",
+        "description": "Interactive div missing role attribute (WCAG 2.2 AA)",
+        "severity": "medium"
+      },
+      {
+        "category": "seo",
+        "description": "Missing meta description",
+        "severity": "medium"
+      },
+      {
+        "category": "seo",
+        "description": "No heading (h1-h3) found",
+        "severity": "medium"
+      },
+      {
+        "category": "seo",
+        "description": "Missing JSON-LD schema",
+        "severity": "low"
+      },
+      {
+        "category": "seo",
+        "description": "Non-semantic tag used for main content",
+        "severity": "low"
+      },
+      {
+        "category": "seo",
+        "description": "Missing viewport meta tag",
+        "severity": "medium"
+      },
+      {
+        "category": "seo",
+        "description": "Missing Open Graph title (og:title)",
+        "severity": "low"
+      },
+      {
+        "category": "seo",
+        "description": "Missing canonical link",
+        "severity": "low"
+      },
+      {
+        "category": "structure",
+        "description": "Anchor opens in new tab without rel=\"noopener noreferrer\"",
+        "severity": "high"
+      },
+      {
+        "category": "structure",
+        "description": "<a> tag has broken or empty href",
+        "severity": "medium"
+      },
+      {
+        "category": "security",
+        "description": "Inline <script> tag detected",
+        "severity": "high"
+      },
+      {
+        "category": "security",
+        "description": "Inline <script> tag detected",
+        "severity": "high"
+      },
+      {
+        "category": "security",
+        "description": "Missing Content-Security-Policy meta tag",
+        "severity": "medium"
+      },
+      {
+        "category": "security",
+        "description": "Potential XSS vector: dangerouslySetInnerHTML",
+        "severity": "high"
+      },
+      {
+        "category": "security",
+        "description": "Potential XSS vector: eval() usage",
+        "severity": "high"
+      },
+      {
+        "category": "security",
+        "description": "Insecure HTTP link/resource found (src)",
+        "severity": "medium"
+      },
+      {
+        "category": "security",
+        "description": "Insecure HTTP link/resource found (href)",
+        "severity": "medium"
+      },
+      {
+        "category": "performance",
+        "description": "Unused CSS class \".unused\"",
+        "severity": "low"
+      },
+      {
+        "category": "performance",
+        "description": "Unused CSS class \".color\"",
+        "severity": "low"
+      },
+      {
+        "category": "performance",
+        "description": "DOM depth is 17, which may impact performance",
+        "severity": "medium"
+      },
+      {
+        "category": "performance",
+        "description": "Image missing lazy loading attribute",
+        "severity": "low"
+      },
+      {
+        "category": "performance",
+        "description": "Image missing lazy loading attribute",
+        "severity": "low"
+      },
+      {
+        "category": "performance",
+        "description": "Image missing width or height attributes",
+        "severity": "low"
+      },
+      {
+        "category": "performance",
+        "description": "Image missing width or height attributes",
+        "severity": "low"
+      },
+      {
+        "category": "performance",
+        "description": "Blocking script in <head> without async/defer",
+        "severity": "medium"
+      },
+      {
+        "category": "i18n",
+        "description": "Missing locale/lang attribute on <html>",
+        "severity": "medium"
+      },
+      {
+        "category": "i18n",
+        "description": "Hardcoded date format detected",
+        "severity": "low"
+      },
+      {
+        "category": "i18n",
+        "description": "Link to alternate language missing hreflang attribute",
+        "severity": "low"
+      },
+      {
+        "category": "structure",
+        "description": "Duplicate id \"duplicate-id\" found 2 times",
+        "severity": "high"
+      },
+      {
+        "category": "structure",
+        "description": "Invalid nesting: <div> inside <p>",
+        "severity": "high"
+      },
+      {
+        "category": "structure",
+        "description": "Invalid nesting: <button> inside <a>",
+        "severity": "high"
+      },
+      {
+        "category": "structure",
+        "description": "Invalid nesting: <a> inside <a>",
+        "severity": "high"
+      },
+      {
+        "category": "structure",
+        "description": "Possible unclosed tags detected",
+        "severity": "medium"
+      },
+      {
+        "category": "structure",
+        "description": "<li> tag found outside of <ul> or <ol>",
+        "severity": "high"
+      }
+    ],
+    "aiSuggestedPatches": [
+      {
+        "diff": "Add alt attribute",
+        "rationale": "Provide descriptive alt text for accessibility."
+      },
+      {
+        "diff": "Optimize or compress image",
+        "rationale": "Large images impact performance."
+      },
+      {
+        "diff": "Add descriptive alt text or use alt=\"\" only for decorative images",
+        "rationale": "Meaningful images require descriptive alt text."
+      },
+      {
+        "diff": "Use higher contrast colors (min 4.5:1 for normal text)",
+        "rationale": "Meets WCAG AA contrast ratio."
+      },
+      {
+        "diff": "Add lang attribute (e.g., lang=\"en\")",
+        "rationale": "Improves accessibility for screen readers."
+      },
+      {
+        "diff": "Add <label> with for attribute or aria-label",
+        "rationale": "Form inputs must be labeled for accessibility."
+      },
+      {
+        "diff": "Add button text or aria-label",
+        "rationale": "Buttons must have accessible names."
+      },
+      {
+        "diff": "Add role=\"button\" or use <button> element",
+        "rationale": "Interactive elements need proper roles."
+      },
+      {
+        "diff": "Add meta description",
+        "rationale": "Improves SEO."
+      },
+      {
+        "diff": "Add heading",
+        "rationale": "Improves SEO and structure."
+      },
+      {
+        "diff": "Add JSON-LD schema",
+        "rationale": "Improves SEO."
+      },
+      {
+        "diff": "Use <main> tag",
+        "rationale": "Improves semantic structure."
+      },
+      {
+        "diff": "Add <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">",
+        "rationale": "Essential for mobile SEO."
+      },
+      {
+        "diff": "Add Open Graph meta tags",
+        "rationale": "Improves social media sharing."
+      },
+      {
+        "diff": "Add <link rel=\"canonical\" href=\"...\">",
+        "rationale": "Prevents duplicate content issues."
+      },
+      {
+        "diff": "Add rel=\"noopener noreferrer\"",
+        "rationale": "Prevent reverse tabnabbing and improve security."
+      },
+      {
+        "diff": "Provide valid href",
+        "rationale": "Broken links harm UX and SEO."
+      },
+      {
+        "diff": "Move script to external file",
+        "rationale": "Inline scripts are a security risk and violate CSP."
+      },
+      {
+        "diff": "Move script to external file",
+        "rationale": "Inline scripts are a security risk and violate CSP."
+      },
+      {
+        "diff": "Add CSP meta tag",
+        "rationale": "CSP helps prevent XSS."
+      },
+      {
+        "diff": "Avoid dangerouslySetInnerHTML or sanitize input",
+        "rationale": "Can introduce XSS vulnerabilities."
+      },
+      {
+        "diff": "Avoid eval()",
+        "rationale": "eval() can execute arbitrary code."
+      },
+      {
+        "diff": "Use HTTPS instead of HTTP",
+        "rationale": "HTTP is insecure and can be intercepted."
+      },
+      {
+        "diff": "Use HTTPS instead of HTTP",
+        "rationale": "HTTP is insecure and can be intercepted."
+      },
+      {
+        "diff": "Remove unused CSS",
+        "rationale": "Removes dead code."
+      },
+      {
+        "diff": "Remove unused CSS",
+        "rationale": "Removes dead code."
+      },
+      {
+        "diff": "Reduce DOM depth",
+        "rationale": "Deep DOM trees impact performance."
+      },
+      {
+        "diff": "Add loading=\"lazy\" to images below the fold",
+        "rationale": "Improves initial page load performance."
+      },
+      {
+        "diff": "Add loading=\"lazy\" to images below the fold",
+        "rationale": "Improves initial page load performance."
+      },
+      {
+        "diff": "Add width and height attributes",
+        "rationale": "Prevents cumulative layout shift (CLS)."
+      },
+      {
+        "diff": "Add width and height attributes",
+        "rationale": "Prevents cumulative layout shift (CLS)."
+      },
+      {
+        "diff": "Add async or defer attribute",
+        "rationale": "Blocking scripts delay page rendering."
+      },
+      {
+        "diff": "Add lang attribute",
+        "rationale": "Improves i18n support."
+      },
+      {
+        "diff": "Use Intl.DateTimeFormat for dates",
+        "rationale": "Date formats vary by locale."
+      },
+      {
+        "diff": "Add hreflang attribute",
+        "rationale": "Helps search engines understand language variants."
+      },
+      {
+        "diff": "Ensure ids are unique",
+        "rationale": "Duplicate ids can cause DOM collisions."
+      },
+      {
+        "diff": "Remove div from paragraph or use span",
+        "rationale": "Block elements cannot be nested inside inline elements."
+      },
+      {
+        "diff": "Remove button or anchor",
+        "rationale": "Interactive elements should not be nested."
+      },
+      {
+        "diff": "Remove nested anchor",
+        "rationale": "Anchor tags cannot be nested."
+      },
+      {
+        "diff": "Ensure all tags are properly closed",
+        "rationale": "Unclosed tags can break layout."
+      },
+      {
+        "diff": "Wrap <li> in <ul> or <ol>",
+        "rationale": "List items must be inside list containers."
+      }
+    ],
+    "rationale": "Automatically generated React component test case."
+  },
+  {
+    "fileName": "sample_input/react_components/user-profile-widget-0001.tsx",
+    "fileType": "TSX",
+    "isValid": true,
+    "issues": [
+      {
+        "category": "accessibility",
+        "description": "Image tag is missing alt text",
+        "severity": "medium"
+      },
+      {
+        "category": "structure",
+        "description": "Anchor opens in new tab without rel=\"noopener\"",
+        "severity": "medium"
+      },
+      {
+        "category": "structure",
+        "description": "Literal text \"View Profile\" may be missing localization",
+        "severity": "medium"
+      }
+    ],
+    "aiSuggestedPatches": [
+      {
+        "diff": "Add alt attribute",
+        "rationale": "Provide descriptive alt text for accessibility."
+      },
+      {
+        "diff": "Add rel=\"noopener noreferrer\"",
+        "rationale": "Prevent reverse tabnabbing and improve security."
+      },
+      {
+        "diff": "Wrap text with t('key')",
+        "rationale": "Use i18n for translatable UI strings."
+      }
+    ],
+    "rationale": "Automatically generated React component test case."
+  },
+  {
+    "fileName": "sample_input/stylesheets/test-styles.css",
+    "fileType": "CSS",
+    "isValid": true,
+    "issues": [
+      {
+        "category": "structure",
+        "description": "Color #aaa has low contrast against #ffffff",
+        "severity": "low"
+      },
+      {
+        "category": "structure",
+        "description": "Color #fff has low contrast against #ffffff",
+        "severity": "low"
+      },
+      {
+        "category": "design",
+        "description": "Styles do not use design tokens (CSS variables)",
+        "severity": "low"
+      }
+    ],
+    "aiSuggestedPatches": [
+      {
+        "diff": "Use design token color with sufficient contrast",
+        "rationale": "Meets WCAG AA contrast ratio."
+      },
+      {
+        "diff": "Use design token color with sufficient contrast",
+        "rationale": "Meets WCAG AA contrast ratio."
+      },
+      {
+        "diff": "Replace hard-coded values with design tokens",
+        "rationale": "Keeps styles consistent with design system."
+      }
+    ],
+    "rationale": "Automatically generated CSS test case."
+  },
+  {
+    "fileName": "sample_input/web_components/test-page.html",
+    "fileType": "HTML",
+    "isValid": false,
+    "issues": [
+      {
+        "category": "accessibility",
+        "description": "Image tag is missing alt text (WCAG 2.2 AA)",
+        "severity": "high"
+      },
+      {
+        "category": "accessibility",
+        "description": "Image tag is missing alt text (WCAG 2.2 AA)",
+        "severity": "high"
+      },
+      {
+        "category": "accessibility",
+        "description": "Missing lang attribute on <html> (WCAG 2.2 AA)",
+        "severity": "high"
+      },
+      {
+        "category": "structure",
+        "description": "Form input missing associated label (WCAG 2.2 AA)",
+        "severity": "high"
+      },
+      {
+        "category": "structure",
+        "description": "Form input missing associated label (WCAG 2.2 AA)",
+        "severity": "high"
+      },
+      {
+        "category": "structure",
+        "description": "Button has no text or aria-label (WCAG 2.2 AA)",
+        "severity": "high"
+      },
+      {
+        "category": "accessibility",
+        "description": "Low color contrast detected (color: #aaa on #fff) - WCAG 2.2 AA violation",
+        "severity": "high"
+      },
+      {
+        "category": "accessibility",
+        "description": "Possible keyboard trap (tabindex=-1) - WCAG 2.2 AA",
+        "severity": "medium"
+      },
+      {
+        "category": "seo",
+        "description": "Missing meta description",
+        "severity": "medium"
+      },
+      {
+        "category": "seo",
+        "description": "Missing <title> tag",
+        "severity": "medium"
+      },
+      {
+        "category": "seo",
+        "description": "Missing JSON-LD schema",
+        "severity": "low"
+      },
+      {
+        "category": "seo",
+        "description": "Missing viewport meta tag",
+        "severity": "medium"
+      },
+      {
+        "category": "seo",
+        "description": "Missing Open Graph title (og:title)",
+        "severity": "low"
+      },
+      {
+        "category": "seo",
+        "description": "Missing canonical link",
+        "severity": "low"
+      },
+      {
+        "category": "seo",
+        "description": "No heading (h1-h3) found",
+        "severity": "medium"
+      },
+      {
+        "category": "seo",
+        "description": "Non-semantic tag used for main content",
+        "severity": "low"
+      },
+      {
+        "category": "security",
+        "description": "Missing Content-Security-Policy meta tag",
+        "severity": "medium"
+      },
+      {
+        "category": "security",
+        "description": "Inline <script> tag detected",
+        "severity": "high"
+      },
+      {
+        "category": "structure",
+        "description": "Anchor opens in new tab without rel=\"noopener noreferrer\"",
+        "severity": "high"
+      },
+      {
+        "category": "security",
+        "description": "Potential XSS vector: eval() usage",
+        "severity": "high"
+      },
+      {
+        "category": "security",
+        "description": "Potential XSS vector: Function constructor",
+        "severity": "high"
+      },
+      {
+        "category": "security",
+        "description": "Inline event handler detected (e.g., onclick)",
+        "severity": "medium"
+      },
+      {
+        "category": "security",
+        "description": "Insecure HTTP link found",
+        "severity": "medium"
+      },
+      {
+        "category": "security",
+        "description": "Insecure HTTP resource found",
+        "severity": "medium"
+      },
+      {
+        "category": "structure",
+        "description": "Duplicate id \"duplicate-id\" found 2 times",
+        "severity": "high"
+      },
+      {
+        "category": "structure",
+        "description": "<a> tag has broken or empty href",
+        "severity": "medium"
+      },
+      {
+        "category": "structure",
+        "description": "<a> tag has broken or empty href",
+        "severity": "medium"
+      },
+      {
+        "category": "structure",
+        "description": "Invalid nesting: <button> inside <a>",
+        "severity": "high"
+      },
+      {
+        "category": "structure",
+        "description": "<li> tag found outside of <ul> or <ol>",
+        "severity": "high"
+      },
+      {
+        "category": "structure",
+        "description": "Table cell found outside of <tr>",
+        "severity": "high"
+      },
+      {
+        "category": "performance",
+        "description": "DOM depth is 15, which may impact performance",
+        "severity": "medium"
+      },
+      {
+        "category": "performance",
+        "description": "Image missing lazy loading attribute",
+        "severity": "low"
+      },
+      {
+        "category": "performance",
+        "description": "Image missing lazy loading attribute",
+        "severity": "low"
+      },
+      {
+        "category": "performance",
+        "description": "Image missing width or height attributes",
+        "severity": "low"
+      },
+      {
+        "category": "performance",
+        "description": "Image missing width or height attributes",
+        "severity": "low"
+      },
+      {
+        "category": "performance",
+        "description": "Blocking script in <head> without async/defer",
+        "severity": "medium"
+      },
+      {
+        "category": "performance",
+        "description": "Image src \"large-image.jpg\" may be large or unoptimized",
+        "severity": "low"
+      },
+      {
+        "category": "performance",
+        "description": "Unused CSS class \".unused\"",
+        "severity": "low"
+      },
+      {
+        "category": "performance",
+        "description": "Unused CSS class \".color\"",
+        "severity": "low"
+      },
+      {
+        "category": "i18n",
+        "description": "Literal text \"Link without rel\" may be missing localization",
+        "severity": "low"
+      },
+      {
+        "category": "i18n",
+        "description": "Literal text \"HTTP Link\" may be missing localization",
+        "severity": "low"
+      },
+      {
+        "category": "i18n",
+        "description": "Literal text \"Spanish Page\" may be missing localization",
+        "severity": "low"
+      },
+      {
+        "category": "i18n",
+        "description": "Literal text \"Invalid nesting - div inside p\" may be missing localization",
+        "severity": "low"
+      },
+      {
+        "category": "i18n",
+        "description": "Literal text \"Invalid nesting - button in a\" may be missing localization",
+        "severity": "low"
+      },
+      {
+        "category": "i18n",
+        "description": "Literal text \"First\" may be missing localization",
+        "severity": "low"
+      },
+      {
+        "category": "i18n",
+        "description": "Literal text \"Second\" may be missing localization",
+        "severity": "low"
+      },
+      {
+        "category": "i18n",
+        "description": "Literal text \"Item outside list\" may be missing localization",
+        "severity": "low"
+      },
+      {
+        "category": "i18n",
+        "description": "Literal text \"Cell outside table row\" may be missing localization",
+        "severity": "low"
+      },
+      {
+        "category": "i18n",
+        "description": "Literal text \"Should use semantic main tag\" may be missing localization",
+        "severity": "low"
+      },
+      {
+        "category": "i18n",
+        "description": "Literal text \"Deep nesting for performance test\" may be missing localization",
+        "severity": "low"
+      },
+      {
+        "category": "i18n",
+        "description": "Literal text \"User-facing text not translated\" may be missing localization",
+        "severity": "low"
+      },
+      {
+        "category": "i18n",
+        "description": "Literal text \"Hardcoded date: 2024-11-09\" may be missing localization",
+        "severity": "low"
+      },
+      {
+        "category": "i18n",
+        "description": "Literal text \"Another format: 11/09/2024\" may be missing localization",
+        "severity": "low"
+      },
+      {
+        "category": "i18n",
+        "description": "Hardcoded date format detected",
+        "severity": "low"
+      },
+      {
+        "category": "i18n",
+        "description": "Link to alternate language missing hreflang attribute",
+        "severity": "low"
+      }
+    ],
+    "aiSuggestedPatches": [
+      {
+        "diff": "Suggested fix: img-alt-missing",
+        "rationale": "Auto-suggested improvement."
+      },
+      {
+        "diff": "Suggested fix: img-alt-missing",
+        "rationale": "Auto-suggested improvement."
+      },
+      {
+        "diff": "Suggested fix: lang-missing",
+        "rationale": "Auto-suggested improvement."
+      },
+      {
+        "diff": "Suggested fix: form-label-missing",
+        "rationale": "Auto-suggested improvement."
+      },
+      {
+        "diff": "Suggested fix: form-label-missing",
+        "rationale": "Auto-suggested improvement."
+      },
+      {
+        "diff": "Suggested fix: button-label-missing",
+        "rationale": "Auto-suggested improvement."
+      },
+      {
+        "diff": "Suggested fix: contrast-low",
+        "rationale": "Auto-suggested improvement."
+      },
+      {
+        "diff": "Suggested fix: keyboard-trap",
+        "rationale": "Auto-suggested improvement."
+      },
+      {
+        "diff": "Suggested fix: seo-missing-description",
+        "rationale": "Auto-suggested improvement."
+      },
+      {
+        "diff": "Suggested fix: seo-missing-title",
+        "rationale": "Auto-suggested improvement."
+      },
+      {
+        "diff": "Suggested fix: seo-missing-jsonld",
+        "rationale": "Auto-suggested improvement."
+      },
+      {
+        "diff": "Suggested fix: seo-missing-viewport",
+        "rationale": "Auto-suggested improvement."
+      },
+      {
+        "diff": "Suggested fix: seo-missing-og-title",
+        "rationale": "Auto-suggested improvement."
+      },
+      {
+        "diff": "Suggested fix: seo-missing-canonical",
+        "rationale": "Auto-suggested improvement."
+      },
+      {
+        "diff": "Suggested fix: seo-missing-heading",
+        "rationale": "Auto-suggested improvement."
+      },
+      {
+        "diff": "Suggested fix: seo-non-semantic",
+        "rationale": "Auto-suggested improvement."
+      },
+      {
+        "diff": "Suggested fix: security-missing-csp",
+        "rationale": "Auto-suggested improvement."
+      },
+      {
+        "diff": "Suggested fix: security-inline-script",
+        "rationale": "Auto-suggested improvement."
+      },
+      {
+        "diff": "Suggested fix: link-target-blank-rel",
+        "rationale": "Auto-suggested improvement."
+      },
+      {
+        "diff": "Suggested fix: security-xss-eval",
+        "rationale": "Auto-suggested improvement."
+      },
+      {
+        "diff": "Suggested fix: security-xss-function-constructor",
+        "rationale": "Auto-suggested improvement."
+      },
+      {
+        "diff": "Suggested fix: security-inline-event-handler",
+        "rationale": "Auto-suggested improvement."
+      },
+      {
+        "diff": "Suggested fix: security-http-link",
+        "rationale": "Auto-suggested improvement."
+      },
+      {
+        "diff": "Suggested fix: security-http-resource",
+        "rationale": "Auto-suggested improvement."
+      },
+      {
+        "diff": "Suggested fix: structural-duplicate-id",
+        "rationale": "Auto-suggested improvement."
+      },
+      {
+        "diff": "Suggested fix: broken-link",
+        "rationale": "Auto-suggested improvement."
+      },
+      {
+        "diff": "Suggested fix: broken-link",
+        "rationale": "Auto-suggested improvement."
+      },
+      {
+        "diff": "Suggested fix: structural-invalid-nesting-button-in-a",
+        "rationale": "Auto-suggested improvement."
+      },
+      {
+        "diff": "Suggested fix: structural-li-outside-list",
+        "rationale": "Auto-suggested improvement."
+      },
+      {
+        "diff": "Suggested fix: structural-cell-outside-row",
+        "rationale": "Auto-suggested improvement."
+      },
+      {
+        "diff": "Suggested fix: perf-excessive-dom-depth",
+        "rationale": "Auto-suggested improvement."
+      },
+      {
+        "diff": "Suggested fix: perf-missing-lazy-loading",
+        "rationale": "Auto-suggested improvement."
+      },
+      {
+        "diff": "Suggested fix: perf-missing-lazy-loading",
+        "rationale": "Auto-suggested improvement."
+      },
+      {
+        "diff": "Suggested fix: perf-missing-image-dimensions",
+        "rationale": "Auto-suggested improvement."
+      },
+      {
+        "diff": "Suggested fix: perf-missing-image-dimensions",
+        "rationale": "Auto-suggested improvement."
+      },
+      {
+        "diff": "Suggested fix: perf-blocking-script",
+        "rationale": "Auto-suggested improvement."
+      },
+      {
+        "diff": "Suggested fix: perf-large-image",
+        "rationale": "Auto-suggested improvement."
+      },
+      {
+        "diff": "Suggested fix: perf-unused-css",
+        "rationale": "Auto-suggested improvement."
+      },
+      {
+        "diff": "Suggested fix: perf-unused-css",
+        "rationale": "Auto-suggested improvement."
+      },
+      {
+        "diff": "Suggested fix: i18n-untranslated",
+        "rationale": "Auto-suggested improvement."
+      },
+      {
+        "diff": "Suggested fix: i18n-untranslated",
+        "rationale": "Auto-suggested improvement."
+      },
+      {
+        "diff": "Suggested fix: i18n-untranslated",
+        "rationale": "Auto-suggested improvement."
+      },
+      {
+        "diff": "Suggested fix: i18n-untranslated",
+        "rationale": "Auto-suggested improvement."
+      },
+      {
+        "diff": "Suggested fix: i18n-untranslated",
+        "rationale": "Auto-suggested improvement."
+      },
+      {
+        "diff": "Suggested fix: i18n-untranslated",
+        "rationale": "Auto-suggested improvement."
+      },
+      {
+        "diff": "Suggested fix: i18n-untranslated",
+        "rationale": "Auto-suggested improvement."
+      },
+      {
+        "diff": "Suggested fix: i18n-untranslated",
+        "rationale": "Auto-suggested improvement."
+      },
+      {
+        "diff": "Suggested fix: i18n-untranslated",
+        "rationale": "Auto-suggested improvement."
+      },
+      {
+        "diff": "Suggested fix: i18n-untranslated",
+        "rationale": "Auto-suggested improvement."
+      },
+      {
+        "diff": "Suggested fix: i18n-untranslated",
+        "rationale": "Auto-suggested improvement."
+      },
+      {
+        "diff": "Suggested fix: i18n-untranslated",
+        "rationale": "Auto-suggested improvement."
+      },
+      {
+        "diff": "Suggested fix: i18n-untranslated",
+        "rationale": "Auto-suggested improvement."
+      },
+      {
+        "diff": "Suggested fix: i18n-untranslated",
+        "rationale": "Auto-suggested improvement."
+      },
+      {
+        "diff": "Suggested fix: i18n-hardcoded-date",
+        "rationale": "Auto-suggested improvement."
+      },
+      {
+        "diff": "Suggested fix: i18n-missing-hreflang",
+        "rationale": "Auto-suggested improvement."
+      }
+    ],
+    "rationale": "Automatically generated test case for evaluator pipelines."
+  }
+]

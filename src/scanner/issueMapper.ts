@@ -16,8 +16,39 @@ export function mapIssues(_file: string, _type: string, issues: Array<Record<str
 
 function determineCategory(rule?: string): string {
   if (!rule) return 'structure';
-  if (rule.startsWith('img')) return 'accessibility';
-  if (rule.startsWith('seo')) return 'seo';
+  if (
+    rule.startsWith('img') ||
+    rule.startsWith('alt') ||
+    rule.startsWith('contrast') ||
+    rule.startsWith('lang') ||
+    rule.startsWith('keyboard')
+  ) return 'accessibility';
+  if (
+    rule.startsWith('seo') ||
+    rule.startsWith('jsonld') ||
+    rule.startsWith('heading') ||
+    rule.startsWith('meta') ||
+    rule.startsWith('title')
+  ) return 'seo';
+  if (
+    rule.startsWith('security') ||
+    rule.startsWith('csp') ||
+    rule.startsWith('xss')
+  ) return 'security';
+  if (
+    rule.startsWith('perf') ||
+    rule.startsWith('dom-depth') ||
+    rule.startsWith('unused')
+  ) return 'performance';
+  if (
+    rule.startsWith('i18n') ||
+    rule.startsWith('locale')
+  ) return 'i18n';
+  if (
+    rule.startsWith('duplicate-id') ||
+    rule.startsWith('broken-link') ||
+    rule.startsWith('invalid-nesting')
+  ) return 'structure';
   if (rule.startsWith('design')) return 'design';
   return 'structure';
 }
