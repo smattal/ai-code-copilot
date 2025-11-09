@@ -1,16 +1,16 @@
 {
   "project": {
     "name": "ai-code-copilot",
-    "totalFiles": 73,
-    "totalLines": 10199,
-    "totalCodeLines": 8474,
-    "totalCommentLines": 239,
-    "totalBlankLines": 1486,
+    "totalFiles": 72,
+    "totalLines": 9468,
+    "totalCodeLines": 7709,
+    "totalCommentLines": 258,
+    "totalBlankLines": 1501,
     "languages": {
-      "HTML": 6,
+      "HTML": 3,
       "JavaScript": 2,
-      "TypeScript JSX": 1,
-      "CSS": 1,
+      "TypeScript JSX": 2,
+      "CSS": 2,
       "TypeScript": 63
     }
   },
@@ -18,34 +18,8 @@
     {
       "filePath": "code-quality-final.html",
       "language": "HTML",
-      "lines": 260,
-      "codeLines": 258,
-      "commentLines": 0,
-      "complexity": 1,
-      "functions": 0,
-      "classes": 0,
-      "issues": [
-        "Contains console.log statements"
-      ]
-    },
-    {
-      "filePath": "code-quality-report-new.html",
-      "language": "HTML",
-      "lines": 261,
-      "codeLines": 259,
-      "commentLines": 0,
-      "complexity": 1,
-      "functions": 0,
-      "classes": 0,
-      "issues": [
-        "Contains console.log statements"
-      ]
-    },
-    {
-      "filePath": "code-quality-report.html",
-      "language": "HTML",
-      "lines": 261,
-      "codeLines": 259,
+      "lines": 264,
+      "codeLines": 262,
       "commentLines": 0,
       "complexity": 1,
       "functions": 0,
@@ -66,12 +40,12 @@
       "issues": []
     },
     {
-      "filePath": "quality-report.html",
-      "language": "HTML",
-      "lines": 260,
-      "codeLines": 258,
+      "filePath": "sample_input\\react_components\\user-profile-widget-0001.tsx",
+      "language": "TypeScript JSX",
+      "lines": 19,
+      "codeLines": 15,
       "commentLines": 0,
-      "complexity": 1,
+      "complexity": 2,
       "functions": 0,
       "classes": 0,
       "issues": [
@@ -79,9 +53,9 @@
       ]
     },
     {
-      "filePath": "sample_input\\react_components\\user-profile-widget-0001.tsx",
+      "filePath": "sample_input\\react_components\\user-profile-widget-0002.tsx",
       "language": "TypeScript JSX",
-      "lines": 19,
+      "lines": 18,
       "codeLines": 15,
       "commentLines": 0,
       "complexity": 2,
@@ -103,6 +77,28 @@
       "issues": []
     },
     {
+      "filePath": "sample_input\\stylesheets\\marketing-landing-0006.css",
+      "language": "CSS",
+      "lines": 8,
+      "codeLines": 6,
+      "commentLines": 1,
+      "complexity": 2,
+      "functions": 0,
+      "classes": 0,
+      "issues": []
+    },
+    {
+      "filePath": "sample_input\\web_components\\internal-dashboard-0001.html",
+      "language": "HTML",
+      "lines": 34,
+      "codeLines": 33,
+      "commentLines": 0,
+      "complexity": 2,
+      "functions": 0,
+      "classes": 0,
+      "issues": []
+    },
+    {
       "filePath": "sample_input\\web_components\\internal-dashboard-0004.html",
       "language": "HTML",
       "lines": 34,
@@ -116,14 +112,14 @@
     {
       "filePath": "src\\cli\\handlers.ts",
       "language": "TypeScript",
-      "lines": 194,
-      "codeLines": 157,
-      "commentLines": 0,
-      "complexity": 32,
+      "lines": 205,
+      "codeLines": 162,
+      "commentLines": 2,
+      "complexity": 33,
       "functions": 12,
       "classes": 0,
       "issues": [
-        "High complexity (32)",
+        "High complexity (33)",
         "Uses \"any\" type"
       ]
     },
@@ -275,13 +271,15 @@
     {
       "filePath": "src\\scanner\\index.ts",
       "language": "TypeScript",
-      "lines": 107,
-      "codeLines": 86,
-      "commentLines": 4,
-      "complexity": 14,
+      "lines": 163,
+      "codeLines": 125,
+      "commentLines": 11,
+      "complexity": 22,
       "functions": 5,
       "classes": 0,
-      "issues": []
+      "issues": [
+        "High complexity (22)"
+      ]
     },
     {
       "filePath": "src\\scanner\\issueMapper.ts",
@@ -401,13 +399,16 @@
     {
       "filePath": "src\\utils\\htmlReportGenerator.ts",
       "language": "TypeScript",
-      "lines": 432,
-      "codeLines": 416,
-      "commentLines": 0,
-      "complexity": 17,
-      "functions": 4,
+      "lines": 590,
+      "codeLines": 547,
+      "commentLines": 9,
+      "complexity": 39,
+      "functions": 7,
       "classes": 0,
-      "issues": []
+      "issues": [
+        "File is too large (>500 lines)",
+        "High complexity (39)"
+      ]
     },
     {
       "filePath": "src\\utils\\logger.ts",
@@ -836,17 +837,6 @@
       "issues": []
     },
     {
-      "filePath": "verification-report.html",
-      "language": "HTML",
-      "lines": 238,
-      "codeLines": 222,
-      "commentLines": 0,
-      "complexity": 1,
-      "functions": 0,
-      "classes": 0,
-      "issues": []
-    },
-    {
       "filePath": "verify-docs.js",
       "language": "JavaScript",
       "lines": 19,
@@ -861,13 +851,17 @@
     }
   ],
   "codeComplexity": {
-    "averageComplexity": 8.4,
-    "maxComplexity": 32,
-    "filesOverThreshold": 14,
+    "averageComplexity": 9,
+    "maxComplexity": 39,
+    "filesOverThreshold": 15,
     "complexFiles": [
       {
+        "file": "src\\utils\\htmlReportGenerator.ts",
+        "complexity": 39
+      },
+      {
         "file": "src\\cli\\handlers.ts",
-        "complexity": 32
+        "complexity": 33
       },
       {
         "file": "src\\utils\\redact.ts",
@@ -880,24 +874,23 @@
       {
         "file": "src\\utils\\verificationLoop.ts",
         "complexity": 30
-      },
-      {
-        "file": "src\\utils\\fileAnalyzer.ts",
-        "complexity": 28
       }
     ]
   },
   "maintainability": {
-    "score": 42,
+    "score": 41,
     "codeSmells": [
       "Contains console.log statements",
-      "High complexity (32)",
+      "High complexity (33)",
       "Uses \"any\" type",
       "High complexity (22)",
       "High complexity (23)",
       "High complexity (28)",
+      "File is too large (>500 lines)",
+      "High complexity (39)",
       "High complexity (31)",
       "High complexity (24)",
+      "High complexity (32)",
       "High complexity (30)",
       "High complexity (25)"
     ],
@@ -908,8 +901,8 @@
   "testCoverage": {
     "hasTests": true,
     "testFiles": 30,
-    "testToCodeRatio": 0.7,
-    "estimatedCoverage": 70
+    "testToCodeRatio": 0.71,
+    "estimatedCoverage": 71
   },
   "dependencies": {
     "total": 15,
@@ -928,6 +921,6 @@
     "hasCI": true,
     "hasDocs": true
   },
-  "overallScore": 71,
+  "overallScore": 70,
   "grade": "B"
 }

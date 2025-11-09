@@ -1,6 +1,6 @@
 [
   {
-    "fileName": "react_components/user-profile-widget-0001.tsx",
+    "fileName": "sample_input/react_components/user-profile-widget-0001.tsx",
     "fileType": "TSX",
     "isValid": false,
     "issues": [
@@ -82,7 +82,7 @@
     "rationale": "Automatically generated React component test case."
   },
   {
-    "fileName": "react_components/user-profile-widget-0002.tsx",
+    "fileName": "sample_input/react_components/user-profile-widget-0002.tsx",
     "fileType": "TSX",
     "isValid": false,
     "issues": [
@@ -146,7 +146,7 @@
     "rationale": "Automatically generated React component test case."
   },
   {
-    "fileName": "stylesheets/marketing-landing-0005.css",
+    "fileName": "sample_input/stylesheets/marketing-landing-0005.css",
     "fileType": "CSS",
     "isValid": true,
     "issues": [
@@ -174,7 +174,7 @@
     "rationale": "Automatically generated CSS test case."
   },
   {
-    "fileName": "stylesheets/marketing-landing-0006.css",
+    "fileName": "sample_input/stylesheets/marketing-landing-0006.css",
     "fileType": "CSS",
     "isValid": true,
     "issues": [],
@@ -182,7 +182,7 @@
     "rationale": "Automatically generated CSS test case."
   },
   {
-    "fileName": "web_components/internal-dashboard-0001.html",
+    "fileName": "sample_input/web_components/internal-dashboard-0001.html",
     "fileType": "HTML",
     "isValid": true,
     "issues": [],
@@ -190,7 +190,7 @@
     "rationale": "Automatically generated test case for evaluator pipelines."
   },
   {
-    "fileName": "web_components/internal-dashboard-0004.html",
+    "fileName": "sample_input/web_components/internal-dashboard-0004.html",
     "fileType": "HTML",
     "isValid": true,
     "issues": [

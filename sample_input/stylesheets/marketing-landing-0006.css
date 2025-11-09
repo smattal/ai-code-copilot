@@ -1,0 +1,7 @@
+/* Styles for marketing-landing-0006 using design tokens */
+.marketing-landing-0006-widget {
+    background: var(--color-background-default);
+    color: var(--color-foreground-body);
+    font-size: var(--font-size-md);
+    padding: var(--space-3);
+}

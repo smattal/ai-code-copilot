@@ -75,28 +75,84 @@ export async function scanAndReport(rootDir: string): Promise<ConsolidatedResult
   const results: ConsolidatedResult[] = [];
   const files = getFilesFromSampleFolders(rootDir);
   
-  for (const f of files) {
-    const rel = path.relative(rootDir, f).replace(/\\/g, '/');
+  // Performance and progress tracking
+  const totalFiles = files.length;
+  logger.info(`📊 Found ${totalFiles} files to scan`);
+  
+  // Memory monitoring
+  const startMemory = process.memoryUsage().heapUsed / 1024 / 1024;
+  const MEMORY_WARNING_THRESHOLD_MB = 500;
+  
+  let processedCount = 0;
+  let cachedCount = 0;
+  
+  // Process files in batches to optimize memory usage
+  const BATCH_SIZE = 50;
+  
+  for (let i = 0; i < files.length; i += BATCH_SIZE) {
+    const batch = files.slice(i, Math.min(i + BATCH_SIZE, files.length));
     
-    try {
-      const content = fs.readFileSync(f, 'utf8');
+    for (const f of batch) {
+      const rel = path.relative(rootDir, f).replace(/\\/g, '/');
       
-      // Try to get cached result
-      const cachedResult = await scanCache.get(content);
-      if (cachedResult) {
-        results.push({ ...cachedResult, fileName: rel });
-        continue;
-      }
+      try {
+        const content = fs.readFileSync(f, 'utf8');
+        
+        // Try to get cached result
+        const cachedResult = await scanCache.get(content);
+        if (cachedResult) {
+          results.push({ ...cachedResult, fileName: rel });
+          cachedCount++;
+          processedCount++;
+          continue;
+        }
 
-      // Process the file
-      const result = processFile(f, rel);
-      if (result) {
-        scanCache.set(content, result);
-        results.push(result);
+        // Process the file
+        const result = processFile(f, rel);
+        if (result) {
+          scanCache.set(content, result);
+          results.push(result);
+        }
+        processedCount++;
+      } catch (err) {
+        // Skip unreadable files
+        processedCount++;
       }
-    } catch (err) {
-      // Skip unreadable files
+      
+      // Show progress every 10 files or at the end
+      if (processedCount % 10 === 0 || processedCount === totalFiles) {
+        const percentage = Math.round((processedCount / totalFiles) * 100);
+        process.stdout.write(`\r⏳ Progress: ${processedCount}/${totalFiles} (${percentage}%) - ${cachedCount} cached`);
+      }
     }
+    
+    // Memory monitoring and cleanup between batches
+    const currentMemory = process.memoryUsage().heapUsed / 1024 / 1024;
+    if (currentMemory > MEMORY_WARNING_THRESHOLD_MB) {
+      process.stdout.write('\r' + ' '.repeat(80) + '\r');
+      logger.warning(`⚠️  High memory usage: ${currentMemory.toFixed(2)}MB. Triggering cleanup...`);
+      
+      if (global.gc) {
+        global.gc();
+        const afterGC = process.memoryUsage().heapUsed / 1024 / 1024;
+        logger.info(`✅ Memory after cleanup: ${afterGC.toFixed(2)}MB`);
+      } else {
+        logger.info('💡 Run with --expose-gc flag for better memory management');
+      }
+    }
+    
+    // Natural garbage collection opportunity between batches
+    if (i + BATCH_SIZE < files.length) {
+      await new Promise(resolve => setImmediate(resolve));
+    }
+  }
+  
+  // Clear progress line and show final stats
+  if (totalFiles > 0) {
+    process.stdout.write('\r' + ' '.repeat(80) + '\r');
+    const endMemory = process.memoryUsage().heapUsed / 1024 / 1024;
+    const memoryDelta = (endMemory - startMemory).toFixed(2);
+    logger.info(`📈 Memory used: ${memoryDelta}MB (start: ${startMemory.toFixed(2)}MB, end: ${endMemory.toFixed(2)}MB)`);
   }
 
   // Log cache statistics

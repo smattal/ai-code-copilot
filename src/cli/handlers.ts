@@ -77,8 +77,19 @@ function generateAndOpenHTMLReport(results: any, htmlPath: string, shouldOpen: b
 }
 
 export async function handleScan(args: ScanArgs): Promise<void> {
+  // Start time for performance tracking
+  const startTime = Date.now();
+  
+  logger.info(`🔍 Starting scan of: ${args.path}`);
+  
   const results = await scanAndReport(args.path);
   const redactedResults = redactSecretsInObject(results);
+  
+  // Performance stats
+  const duration = ((Date.now() - startTime) / 1000).toFixed(2);
+  const totalIssues = redactedResults.reduce((sum: number, r: any) => sum + r.issues.length, 0);
+  
+  logger.success(`✅ Scan complete in ${duration}s - ${results.length} files, ${totalIssues} issues found`);
   
   saveScanResults(redactedResults, args.out);
   

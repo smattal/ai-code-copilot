@@ -146,6 +146,45 @@ export function generateHTMLReport(results: ScanResult[], outputPath: string): v
       color: white; 
       border-color: #667eea;
     }
+    .pagination { 
+      background: white; 
+      padding: 20px; 
+      border-radius: 12px; 
+      margin-bottom: 20px; 
+      display: flex; 
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .pagination-btn {
+      padding: 8px 16px;
+      border: 2px solid #e0e0e0;
+      background: white;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 500;
+      font-size: 14px;
+      transition: all 0.3s;
+    }
+    .pagination-btn:hover:not(:disabled) {
+      background: #f5f5f5;
+      border-color: #667eea;
+    }
+    .pagination-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    .pagination-btn.active {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border-color: #667eea;
+    }
+    .pagination-info {
+      color: #666;
+      font-size: 14px;
+      font-weight: 500;
+    }
     .file-card { 
       background: white; 
       padding: 25px; 
@@ -341,6 +380,15 @@ export function generateHTMLReport(results: ScanResult[], outputPath: string): v
       <button class="filter-btn" onclick="filterFiles('html', event)">🌐 HTML</button>
     </div>
 
+    <div class="pagination" id="pagination">
+      <button class="pagination-btn" onclick="changePage('first')" id="firstBtn">⏮️ First</button>
+      <button class="pagination-btn" onclick="changePage('prev')" id="prevBtn">◀️ Prev</button>
+      <span class="pagination-info" id="pageInfo">Page 1 of 1</span>
+      <button class="pagination-btn" onclick="changePage('next')" id="nextBtn">Next ▶️</button>
+      <button class="pagination-btn" onclick="changePage('last')" id="lastBtn">Last ⏭️</button>
+    </div>
+
+    <div id="fileCardsContainer">
     ${results.map(file => `
       <div class="file-card" data-type="${file.fileType.toLowerCase()}" data-has-issues="${file.issues.length > 0}" data-has-high="${file.issues.some(i => i.severity === 'high')}">
         <div class="file-header">
@@ -381,6 +429,11 @@ export function generateHTMLReport(results: ScanResult[], outputPath: string): v
   </div>
 
   <script>
+    let currentPage = 1;
+    let itemsPerPage = 50; // Show 50 files per page
+    let currentFilter = 'all';
+    let currentFilterEvent = null;
+    
     function filterFiles(type, event) {
       const cards = document.querySelectorAll('.file-card');
       const buttons = document.querySelectorAll('.filter-btn');
@@ -389,11 +442,16 @@ export function generateHTMLReport(results: ScanResult[], outputPath: string): v
       buttons.forEach(btn => btn.classList.remove('active'));
       if (event && event.target) event.target.classList.add('active');
 
+      currentFilter = type;
+      currentFilterEvent = event;
+      currentPage = 1; // Reset to first page when filter changes
+
       // Reset all issues to visible first
       allIssues.forEach(issue => {
         issue.style.display = 'flex';
       });
 
+      let visibleCards = [];
       cards.forEach(card => {
         let show = false;
         if (type === 'all') {
@@ -415,9 +473,89 @@ export function generateHTMLReport(results: ScanResult[], outputPath: string): v
           show = card.dataset.type === type;
         }
         
-        card.style.display = show ? 'block' : 'none';
+        if (show) {
+          visibleCards.push(card);
+        }
       });
+      
+      // Apply pagination
+      paginateCards(visibleCards);
     }
+    
+    function paginateCards(visibleCards) {
+      const totalPages = Math.ceil(visibleCards.length / itemsPerPage);
+      const start = (currentPage - 1) * itemsPerPage;
+      const end = start + itemsPerPage;
+      
+      // Hide all cards first
+      document.querySelectorAll('.file-card').forEach(card => {
+        card.style.display = 'none';
+      });
+      
+      // Show only cards for current page
+      visibleCards.forEach((card, index) => {
+        if (index >= start && index < end) {
+          card.style.display = 'block';
+        }
+      });
+      
+      // Update pagination controls
+      updatePaginationControls(currentPage, totalPages, visibleCards.length);
+      
+      // Hide pagination if all cards fit on one page
+      document.getElementById('pagination').style.display = 
+        totalPages <= 1 ? 'none' : 'flex';
+    }
+    
+    function updatePaginationControls(page, totalPages, totalItems) {
+      document.getElementById('pageInfo').textContent = 
+        totalItems > 0 ? \`Page \${page} of \${totalPages} (\${totalItems} files)\` : 'No files found';
+      document.getElementById('firstBtn').disabled = page === 1;
+      document.getElementById('prevBtn').disabled = page === 1;
+      document.getElementById('nextBtn').disabled = page >= totalPages;
+      document.getElementById('lastBtn').disabled = page >= totalPages;
+    }
+    
+    function changePage(direction) {
+      const cards = document.querySelectorAll('.file-card');
+      let visibleCards = [];
+      
+      cards.forEach(card => {
+        let show = false;
+        if (currentFilter === 'all') {
+          show = true;
+        } else if (currentFilter === 'issues') {
+          show = card.dataset.hasIssues === 'true';
+        } else if (currentFilter === 'high') {
+          show = card.dataset.hasHigh === 'true';
+        } else {
+          show = card.dataset.type === currentFilter;
+        }
+        if (show) visibleCards.push(card);
+      });
+      
+      const totalPages = Math.ceil(visibleCards.length / itemsPerPage);
+      
+      if (direction === 'first') {
+        currentPage = 1;
+      } else if (direction === 'prev') {
+        currentPage = Math.max(1, currentPage - 1);
+      } else if (direction === 'next') {
+        currentPage = Math.min(totalPages, currentPage + 1);
+      } else if (direction === 'last') {
+        currentPage = totalPages;
+      }
+      
+      paginateCards(visibleCards);
+      
+      // Scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    
+    // Initialize on page load
+    window.onload = function() {
+      filterFiles('all', { target: document.querySelector('.filter-btn.active') });
+    };
   </script>
 </body>
 </html>
