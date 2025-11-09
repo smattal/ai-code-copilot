@@ -1,37 +1,10 @@
-import * as fs from 'fs';
-import { logger } from './logger';
 
-interface ScanResult {
-  fileName: string;
-  fileType: string;
-  isValid: boolean;
-  issues: Array<{
-    category: string;
-    description: string;
-    severity: string;
-  }>;
-  aiSuggestedPatches: Array<{
-    diff?: string;
-    rationale: string;
-  }>;
-}
-
-export function generateHTMLReport(results: ScanResult[], outputPath: string): void {
-  const totalIssues = results.reduce((sum, r) => sum + r.issues.length, 0);
-  const totalFixes = results.reduce((sum, r) => sum + r.aiSuggestedPatches.length, 0);
-  const highSeverityIssues = results.flatMap(r => r.issues).filter(i => i.severity === 'high').length;
-  const issuesByCategory = results.flatMap(r => r.issues).reduce((acc, issue) => {
-    acc[issue.category] = (acc[issue.category] || 0) + 1;
-    return acc;
-  }, {} as Record<string, number>);
-
-  const html = `
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Code Scan Report - ${new Date().toLocaleDateString()}</title>
+  <title>Code Scan Report - 11/9/2025</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { 
@@ -295,41 +268,51 @@ export function generateHTMLReport(results: ScanResult[], outputPath: string): v
         <span>🔍</span>
         <span>Code Quality Scan Report</span>
       </h1>
-      <div class="subtitle">Generated on ${new Date().toLocaleString()}</div>
+      <div class="subtitle">Generated on 11/9/2025, 1:55:02 PM</div>
     </div>
     
     <div class="summary">
       <h2>📊 Summary Statistics</h2>
       <div class="summary-grid">
         <div class="stat-card">
-          <div class="stat-value">${results.length}</div>
+          <div class="stat-value">3</div>
           <div class="stat-label">Files Scanned</div>
         </div>
         <div class="stat-card">
-          <div class="stat-value">${totalIssues}</div>
+          <div class="stat-value">11</div>
           <div class="stat-label">Total Issues</div>
         </div>
         <div class="stat-card">
-          <div class="stat-value">${highSeverityIssues}</div>
+          <div class="stat-value">5</div>
           <div class="stat-label">High Severity</div>
         </div>
         <div class="stat-card">
-          <div class="stat-value">${totalFixes}</div>
+          <div class="stat-value">11</div>
           <div class="stat-label">Suggested Fixes</div>
         </div>
       </div>
 
-      ${Object.keys(issuesByCategory).length > 0 ? `
+      
         <div class="category-breakdown">
           <h3>Issues by Category</h3>
-          ${Object.entries(issuesByCategory).map(([category, count]) => `
+          
             <div class="category-item">
-              <span>${escapeHtml(category)}</span>
-              <strong>${count}</strong>
+              <span>accessibility</span>
+              <strong>2</strong>
             </div>
-          `).join('')}
+          
+            <div class="category-item">
+              <span>structure</span>
+              <strong>8</strong>
+            </div>
+          
+            <div class="category-item">
+              <span>design</span>
+              <strong>1</strong>
+            </div>
+          
         </div>
-      ` : ''}
+      
     </div>
 
     <div class="filter-bar">
@@ -341,43 +324,213 @@ export function generateHTMLReport(results: ScanResult[], outputPath: string): v
       <button class="filter-btn" onclick="filterFiles('html', event)">🌐 HTML</button>
     </div>
 
-    ${results.map(file => `
-      <div class="file-card" data-type="${file.fileType.toLowerCase()}" data-has-issues="${file.issues.length > 0}" data-has-high="${file.issues.some(i => i.severity === 'high')}">
+    
+      <div class="file-card" data-type="tsx" data-has-issues="true" data-has-high="true">
         <div class="file-header">
-          <div class="file-name">${escapeHtml(file.fileName)}</div>
-          <div class="file-type">${escapeHtml(file.fileType)}</div>
+          <div class="file-name">sample_input/react_components/user-profile-widget-0001.tsx</div>
+          <div class="file-type">TSX</div>
         </div>
 
-        ${file.issues.length === 0 ? `
-          <div class="no-issues">✅ No issues found - Great job!</div>
-        ` : `
+        
           <div class="issues-section">
-            <h3>⚠️ Issues Found (${file.issues.length})</h3>
-            ${file.issues.map(issue => `
-              <div class="issue-item ${issue.severity}">
-                <span class="severity-badge severity-${issue.severity}">${escapeHtml(issue.severity)}</span>
+            <h3>⚠️ Issues Found (8)</h3>
+            
+              <div class="issue-item medium">
+                <span class="severity-badge severity-medium">medium</span>
                 <div class="issue-content">
-                  <div class="issue-category">${escapeHtml(issue.category)}</div>
-                  <div class="issue-description">${escapeHtml(issue.description)}</div>
+                  <div class="issue-category">accessibility</div>
+                  <div class="issue-description">Image tag is missing alt text</div>
                 </div>
               </div>
-            `).join('')}
+            
+              <div class="issue-item medium">
+                <span class="severity-badge severity-medium">medium</span>
+                <div class="issue-content">
+                  <div class="issue-category">structure</div>
+                  <div class="issue-description">Anchor opens in new tab without rel=&quot;noopener&quot;</div>
+                </div>
+              </div>
+            
+              <div class="issue-item medium">
+                <span class="severity-badge severity-medium">medium</span>
+                <div class="issue-content">
+                  <div class="issue-category">structure</div>
+                  <div class="issue-description">Literal text &quot;View Profile&quot; may be missing localization</div>
+                </div>
+              </div>
+            
+              <div class="issue-item high">
+                <span class="severity-badge severity-high">high</span>
+                <div class="issue-content">
+                  <div class="issue-category">structure</div>
+                  <div class="issue-description">Possible malformed JSX near text &quot;from&quot; (missing &quot;&gt;&quot; after tag?)</div>
+                </div>
+              </div>
+            
+              <div class="issue-item high">
+                <span class="severity-badge severity-high">high</span>
+                <div class="issue-content">
+                  <div class="issue-category">structure</div>
+                  <div class="issue-description">Possible malformed JSX near text &quot;className&quot; (missing &quot;&gt;&quot; after tag?)</div>
+                </div>
+              </div>
+            
+              <div class="issue-item high">
+                <span class="severity-badge severity-high">high</span>
+                <div class="issue-content">
+                  <div class="issue-category">structure</div>
+                  <div class="issue-description">Possible malformed JSX near text &quot;loading&quot; (missing &quot;&gt;&quot; after tag?)</div>
+                </div>
+              </div>
+            
+              <div class="issue-item high">
+                <span class="severity-badge severity-high">high</span>
+                <div class="issue-content">
+                  <div class="issue-category">structure</div>
+                  <div class="issue-description">Possible malformed JSX near text &quot;target&quot; (missing &quot;&gt;&quot; after tag?)</div>
+                </div>
+              </div>
+            
+              <div class="issue-item high">
+                <span class="severity-badge severity-high">high</span>
+                <div class="issue-content">
+                  <div class="issue-category">structure</div>
+                  <div class="issue-description">Possible malformed JSX near text &quot;Follow&quot; (missing &quot;&gt;&quot; after tag?)</div>
+                </div>
+              </div>
+            
           </div>
 
-          ${file.aiSuggestedPatches.length > 0 ? `
+          
             <div class="patches-section">
-              <h3>💡 Suggested Fixes (${file.aiSuggestedPatches.length})</h3>
-              ${file.aiSuggestedPatches.map(patch => `
+              <h3>💡 Suggested Fixes (8)</h3>
+              
                 <div class="patch-item">
-                  ${patch.diff ? `<pre class="patch-diff">${formatDiff(patch.diff)}</pre>` : ''}
-                  <div class="patch-rationale">${escapeHtml(patch.rationale)}</div>
+                  <pre class="patch-diff">Add alt attribute</pre>
+                  <div class="patch-rationale">Provide descriptive alt text for accessibility.</div>
                 </div>
-              `).join('')}
+              
+                <div class="patch-item">
+                  <pre class="patch-diff">Add rel=&quot;noopener noreferrer&quot;</pre>
+                  <div class="patch-rationale">Prevent reverse tabnabbing and improve security.</div>
+                </div>
+              
+                <div class="patch-item">
+                  <pre class="patch-diff">Wrap text with t(&#039;key&#039;)</pre>
+                  <div class="patch-rationale">Use i18n for translatable UI strings.</div>
+                </div>
+              
+                <div class="patch-item">
+                  <pre class="patch-diff">Fix tag closing &gt; before text</pre>
+                  <div class="patch-rationale">Malformed JSX can break rendering.</div>
+                </div>
+              
+                <div class="patch-item">
+                  <pre class="patch-diff">Fix tag closing &gt; before text</pre>
+                  <div class="patch-rationale">Malformed JSX can break rendering.</div>
+                </div>
+              
+                <div class="patch-item">
+                  <pre class="patch-diff">Fix tag closing &gt; before text</pre>
+                  <div class="patch-rationale">Malformed JSX can break rendering.</div>
+                </div>
+              
+                <div class="patch-item">
+                  <pre class="patch-diff">Fix tag closing &gt; before text</pre>
+                  <div class="patch-rationale">Malformed JSX can break rendering.</div>
+                </div>
+              
+                <div class="patch-item">
+                  <pre class="patch-diff">Fix tag closing &gt; before text</pre>
+                  <div class="patch-rationale">Malformed JSX can break rendering.</div>
+                </div>
+              
             </div>
-          ` : ''}
-        `}
+          
+        
       </div>
-    `).join('')}
+    
+      <div class="file-card" data-type="css" data-has-issues="true" data-has-high="false">
+        <div class="file-header">
+          <div class="file-name">sample_input/stylesheets/marketing-landing-0005.css</div>
+          <div class="file-type">CSS</div>
+        </div>
+
+        
+          <div class="issues-section">
+            <h3>⚠️ Issues Found (2)</h3>
+            
+              <div class="issue-item low">
+                <span class="severity-badge severity-low">low</span>
+                <div class="issue-content">
+                  <div class="issue-category">structure</div>
+                  <div class="issue-description">Color #aaa has low contrast against #fff</div>
+                </div>
+              </div>
+            
+              <div class="issue-item low">
+                <span class="severity-badge severity-low">low</span>
+                <div class="issue-content">
+                  <div class="issue-category">design</div>
+                  <div class="issue-description">Styles do not use design tokens (CSS variables)</div>
+                </div>
+              </div>
+            
+          </div>
+
+          
+            <div class="patches-section">
+              <h3>💡 Suggested Fixes (2)</h3>
+              
+                <div class="patch-item">
+                  <pre class="patch-diff">Use design token color with sufficient contrast</pre>
+                  <div class="patch-rationale">Meets WCAG AA contrast ratio.</div>
+                </div>
+              
+                <div class="patch-item">
+                  <pre class="patch-diff">Replace hard-coded values with design tokens</pre>
+                  <div class="patch-rationale">Keeps styles consistent with design system.</div>
+                </div>
+              
+            </div>
+          
+        
+      </div>
+    
+      <div class="file-card" data-type="html" data-has-issues="true" data-has-high="false">
+        <div class="file-header">
+          <div class="file-name">sample_input/web_components/internal-dashboard-0004.html</div>
+          <div class="file-type">HTML</div>
+        </div>
+
+        
+          <div class="issues-section">
+            <h3>⚠️ Issues Found (1)</h3>
+            
+              <div class="issue-item medium">
+                <span class="severity-badge severity-medium">medium</span>
+                <div class="issue-content">
+                  <div class="issue-category">accessibility</div>
+                  <div class="issue-description">Image tag is missing alt text</div>
+                </div>
+              </div>
+            
+          </div>
+
+          
+            <div class="patches-section">
+              <h3>💡 Suggested Fixes (1)</h3>
+              
+                <div class="patch-item">
+                  <pre class="patch-diff">Suggested fix: img-alt-missing</pre>
+                  <div class="patch-rationale">Internal dashboard hero</div>
+                </div>
+              
+            </div>
+          
+        
+      </div>
+    
   </div>
 
   <script>
@@ -421,32 +574,4 @@ export function generateHTMLReport(results: ScanResult[], outputPath: string): v
   </script>
 </body>
 </html>
-  `;
-
-  fs.writeFileSync(outputPath, html, 'utf8');
-  logger.success(`HTML report generated successfully at: ${outputPath}`);
-}
-
-function escapeHtml(text: string): string {
-  if (!text) return '';
-  return text
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#039;');
-}
-
-function formatDiff(diff: string): string {
-  return escapeHtml(diff)
-    .split('\n')
-    .map(line => {
-      if (line.startsWith('+')) {
-        return `<span class="diff-add">${line}</span>`;
-      } else if (line.startsWith('-')) {
-        return `<span class="diff-remove">${line}</span>`;
-      }
-      return line;
-    })
-    .join('\n');
-}
+  

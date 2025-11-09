@@ -82,6 +82,70 @@
     "rationale": "Automatically generated React component test case."
   },
   {
+    "fileName": "sample_input/react_components/user-profile-widget-0002.tsx",
+    "fileType": "TSX",
+    "isValid": false,
+    "issues": [
+      {
+        "category": "structure",
+        "description": "Anchor opens in new tab without rel=\"noopener\"",
+        "severity": "medium"
+      },
+      {
+        "category": "structure",
+        "description": "Possible malformed JSX near text \"from\" (missing \">\" after tag?)",
+        "severity": "high"
+      },
+      {
+        "category": "structure",
+        "description": "Possible malformed JSX near text \"className\" (missing \">\" after tag?)",
+        "severity": "high"
+      },
+      {
+        "category": "structure",
+        "description": "Possible malformed JSX near text \"alt\" (missing \">\" after tag?)",
+        "severity": "high"
+      },
+      {
+        "category": "structure",
+        "description": "Possible malformed JSX near text \"id\" (missing \">\" after tag?)",
+        "severity": "high"
+      },
+      {
+        "category": "structure",
+        "description": "Possible malformed JSX near text \"target\" (missing \">\" after tag?)",
+        "severity": "high"
+      }
+    ],
+    "aiSuggestedPatches": [
+      {
+        "diff": "Add rel=\"noopener noreferrer\"",
+        "rationale": "Prevent reverse tabnabbing and improve security."
+      },
+      {
+        "diff": "Fix tag closing > before text",
+        "rationale": "Malformed JSX can break rendering."
+      },
+      {
+        "diff": "Fix tag closing > before text",
+        "rationale": "Malformed JSX can break rendering."
+      },
+      {
+        "diff": "Fix tag closing > before text",
+        "rationale": "Malformed JSX can break rendering."
+      },
+      {
+        "diff": "Fix tag closing > before text",
+        "rationale": "Malformed JSX can break rendering."
+      },
+      {
+        "diff": "Fix tag closing > before text",
+        "rationale": "Malformed JSX can break rendering."
+      }
+    ],
+    "rationale": "Automatically generated React component test case."
+  },
+  {
     "fileName": "sample_input/stylesheets/marketing-landing-0005.css",
     "fileType": "CSS",
     "isValid": true,
@@ -108,6 +172,22 @@
       }
     ],
     "rationale": "Automatically generated CSS test case."
+  },
+  {
+    "fileName": "sample_input/stylesheets/marketing-landing-0006.css",
+    "fileType": "CSS",
+    "isValid": true,
+    "issues": [],
+    "aiSuggestedPatches": [],
+    "rationale": "Automatically generated CSS test case."
+  },
+  {
+    "fileName": "sample_input/web_components/internal-dashboard-0001.html",
+    "fileType": "HTML",
+    "isValid": true,
+    "issues": [],
+    "aiSuggestedPatches": [],
+    "rationale": "Automatically generated test case for evaluator pipelines."
   },
   {
     "fileName": "sample_input/web_components/internal-dashboard-0004.html",
