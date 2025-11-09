@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.scan-cache/
+coverage/
+*.json
+*.html
+*.css
+sample_input/

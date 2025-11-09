@@ -1,4 +1,5 @@
 import * as fs from 'fs';
+import { logger } from './logger';
 
 interface ScanResult {
   fileName: string;
@@ -403,7 +404,7 @@ export function generateHTMLReport(results: ScanResult[], outputPath: string): v
   `;
 
   fs.writeFileSync(outputPath, html, 'utf8');
-  console.log(`✅ HTML report generated successfully at: ${outputPath}`);
+  logger.success(`HTML report generated successfully at: ${outputPath}`);
 }
 
 function escapeHtml(text: string): string {

@@ -1,0 +1,130 @@
+
+> ai-code-copilot@0.1.0 test
+> jest --passWithNoTests
+
+PASS test/cssScanner.test.ts (12.653 s)
+PASS test/mockModel.test.ts (12.588 s)
+PASS test/qualityReporter.test.ts (13.119 s)
+PASS test/codeQualityAnalyzer.test.ts (13.321 s)
+PASS test/redact.test.ts
+PASS test/scanner.test.ts (13.593 s)
+  ● Console
+
+    console.warn
+      sample_input directory not found at C:\ai-code-copilot\test\fixtures\sample_input
+
+    [0m [90m 50 |[39m   [90m// Check if sample_input directory exists[39m
+     [90m 51 |[39m   [36mif[39m ([33m![39mfs[33m.[39mexistsSync(sampleInputPath)) {
+    [31m[1m>[22m[39m[90m 52 |[39m     console[33m.[39mwarn([32m`sample_input directory not found at ${sampleInputPath}`[39m)[33m;[39m
+     [90m    |[39m             [31m[1m^[22m[39m
+     [90m 53 |[39m     [36mreturn[39m files[33m;[39m
+     [90m 54 |[39m   }
+     [90m 55 |[39m   [0m
+
+      at getFilesFromSampleFolders (src/scanner/index.ts:52:13)
+      at scanAndReport (src/scanner/index.ts:87:17)
+      at Object.<anonymous> (test/scanner.test.ts:25:42)
+
+    console.warn
+      sample_input directory not found at C:\ai-code-copilot\test\fixtures\sample_input
+
+    [0m [90m 50 |[39m   [90m// Check if sample_input directory exists[39m
+     [90m 51 |[39m   [36mif[39m ([33m![39mfs[33m.[39mexistsSync(sampleInputPath)) {
+    [31m[1m>[22m[39m[90m 52 |[39m     console[33m.[39mwarn([32m`sample_input directory not found at ${sampleInputPath}`[39m)[33m;[39m
+     [90m    |[39m             [31m[1m^[22m[39m
+     [90m 53 |[39m     [36mreturn[39m files[33m;[39m
+     [90m 54 |[39m   }
+     [90m 55 |[39m   [0m
+
+      at getFilesFromSampleFolders (src/scanner/index.ts:52:13)
+      at scanAndReport (src/scanner/index.ts:87:17)
+      at Object.<anonymous> (test/scanner.test.ts:35:42)
+
+    console.warn
+      sample_input directory not found at C:\ai-code-copilot\test\fixtures\sample_input
+
+    [0m [90m 50 |[39m   [90m// Check if sample_input directory exists[39m
+     [90m 51 |[39m   [36mif[39m ([33m![39mfs[33m.[39mexistsSync(sampleInputPath)) {
+    [31m[1m>[22m[39m[90m 52 |[39m     console[33m.[39mwarn([32m`sample_input directory not found at ${sampleInputPath}`[39m)[33m;[39m
+     [90m    |[39m             [31m[1m^[22m[39m
+     [90m 53 |[39m     [36mreturn[39m files[33m;[39m
+     [90m 54 |[39m   }
+     [90m 55 |[39m   [0m
+
+      at getFilesFromSampleFolders (src/scanner/index.ts:52:13)
+      at scanAndReport (src/scanner/index.ts:87:17)
+      at Object.<anonymous> (test/scanner.test.ts:45:42)
+
+    console.warn
+      sample_input directory not found at C:\ai-code-copilot\test\fixtures\empty\sample_input
+
+    [0m [90m 50 |[39m   [90m// Check if sample_input directory exists[39m
+     [90m 51 |[39m   [36mif[39m ([33m![39mfs[33m.[39mexistsSync(sampleInputPath)) {
+    [31m[1m>[22m[39m[90m 52 |[39m     console[33m.[39mwarn([32m`sample_input directory not found at ${sampleInputPath}`[39m)[33m;[39m
+     [90m    |[39m             [31m[1m^[22m[39m
+     [90m 53 |[39m     [36mreturn[39m files[33m;[39m
+     [90m 54 |[39m   }
+     [90m 55 |[39m   [0m
+
+      at getFilesFromSampleFolders (src/scanner/index.ts:52:13)
+      at scanAndReport (src/scanner/index.ts:87:17)
+      at Object.<anonymous> (test/scanner.test.ts:57:42)
+
+PASS test/logger.test.ts
+PASS test/tsxScanner.test.ts (13.704 s)
+FAIL test/metricsCalculator.test.ts (13.751 s)
+  ● MetricsCalculator › calculateGrade › should return correct grades
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "F"
+    Received: "D"
+
+    [0m [90m 166 |[39m       expect(calculator[33m.[39mcalculateGrade([35m65[39m))[33m.[39mtoBe([32m'B-'[39m)[33m;[39m
+     [90m 167 |[39m       expect(calculator[33m.[39mcalculateGrade([35m55[39m))[33m.[39mtoBe([32m'C'[39m)[33m;[39m
+    [31m[1m>[22m[39m[90m 168 |[39m       expect(calculator[33m.[39mcalculateGrade([35m45[39m))[33m.[39mtoBe([32m'F'[39m)[33m;[39m
+     [90m     |[39m                                             [31m[1m^[22m[39m
+     [90m 169 |[39m     })[33m;[39m
+     [90m 170 |[39m   })[33m;[39m
+     [90m 171 |[39m })[33m;[39m[0m
+
+      at Object.<anonymous> (test/metricsCalculator.test.ts:168:45)
+
+PASS test/verificationLoop.test.ts (13.755 s)
+PASS test/fileAnalyzer.test.ts (14.165 s)
+PASS test/cache.test.ts (14.042 s)
+PASS test/htmlScanner.test.ts (14.375 s)
+-------------------------|---------|----------|---------|---------|----------------------
+File                     | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s    
+-------------------------|---------|----------|---------|---------|----------------------
+All files                |   55.75 |    37.05 |   54.41 |   56.14 |                      
+ src                     |       0 |      100 |     100 |       0 |                      
+  modelService.ts        |       0 |      100 |     100 |       0 | 1-11                 
+ src/model               |   16.66 |     4.34 |   14.28 |   17.07 |                      
+  mockModel.ts           |   53.84 |    16.66 |   66.66 |   58.33 | 5-9                  
+  modelRouter.ts         |       0 |        0 |       0 |       0 | 18-142               
+ src/patcher             |       0 |        0 |       0 |       0 |                      
+  astPatcher.ts          |       0 |        0 |       0 |       0 | 1-118                
+  patchGenerator.ts      |       0 |        0 |       0 |       0 | 1-100                
+ src/scanner             |   79.59 |    55.55 |      90 |   80.64 |                      
+  cssScanner.ts          |   96.96 |    77.77 |     100 |   96.66 | 49                   
+  htmlScanner.ts         |    62.5 |    33.33 |      75 |   66.66 | 16-27                
+  tsxScanner.ts          |   78.78 |       60 |     100 |   78.78 | 49-51,59-60,63-64    
+ src/utils               |   67.93 |    48.44 |   61.76 |   69.15 |                      
+  cache.ts               |   72.46 |    61.11 |      80 |   72.46 | 54-55,87-104,125-142 
+  codeQualityAnalyzer.ts |     100 |      100 |     100 |     100 |                      
+  fileAnalyzer.ts        |   96.82 |    89.65 |     100 |   98.36 | 122                  
+  htmlReportGenerator.ts |       0 |        0 |       0 |       0 | 1-429                
+  logger.ts              |   89.65 |    83.33 |   91.66 |   89.65 | 62-68                
+  metricsCalculator.ts   |   95.57 |       80 |     100 |   98.88 | 208                  
+  prompts.ts             |       0 |        0 |       0 |       0 | 1-179                
+  qualityReporter.ts     |     100 |    49.36 |     100 |     100 | 26-60,77-316         
+  redact.ts              |      50 |        0 |      60 |   52.38 | 61-77                
+  verificationLoop.ts    |    45.2 |     23.4 |      30 |   44.28 | 55,113-161,165-380   
+-------------------------|---------|----------|---------|---------|----------------------
+
+Test Suites: 1 failed, 12 passed, 13 total
+Tests:       1 failed, 74 passed, 75 total
+Snapshots:   0 total
+Time:        29.189 s
+Ran all test suites.

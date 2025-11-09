@@ -57,21 +57,21 @@ export function redactSecrets(content: string): string {
 /**
  * Redacts sensitive information from an object by traversing it
  */
-export function redactSecretsInObject(obj: any): any {
+export function redactSecretsInObject<T>(obj: T): T {
   if (typeof obj === 'string') {
-    return redactSecrets(obj);
+    return redactSecrets(obj) as T;
   }
   
   if (Array.isArray(obj)) {
-    return obj.map(item => redactSecretsInObject(item));
+    return obj.map(item => redactSecretsInObject(item)) as T;
   }
   
   if (typeof obj === 'object' && obj !== null) {
-    const result: any = {};
+    const result: Record<string, unknown> = {};
     for (const [key, value] of Object.entries(obj)) {
       result[key] = redactSecretsInObject(value);
     }
-    return result;
+    return result as T;
   }
   
   return obj;

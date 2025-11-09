@@ -1,4 +1,5 @@
 import { ModelResponse, ModelConfig, Fix } from '../types/model';
+import { logger } from '../utils/logger';
 
 export interface ModelRouterConfig {
   maxInputLength: number;  // Maximum input length for each model
@@ -78,7 +79,7 @@ export class ModelRouter {
       try {
         return await model.generateSuggestion(input);
       } catch (error) {
-        console.warn(`Model ${model.name} failed:`, error);
+        logger.warning(`Model ${model.name} failed: ${error}`);
         continue;
       }
     }
@@ -112,17 +113,17 @@ export class ModelRouter {
     const fixes: Fix[] = [
       {
         pattern: /<img[^>]+>/i,
-        fix: (match) => match.includes('alt=') ? match : match.replace('>', ' alt="Image" >'),
+        fix: (match: string) => match.includes('alt=') ? match : match.replace('>', ' alt="Image" >'),
         reasoning: 'Added missing alt attribute for accessibility'
       },
       {
         pattern: /<a[^>]+target="_blank"[^>]*>/i,
-        fix: (match) => match.includes('rel="noopener noreferrer"') ? match : match.replace('>', ' rel="noopener noreferrer">'),
+        fix: (match: string) => match.includes('rel="noopener noreferrer"') ? match : match.replace('>', ' rel="noopener noreferrer">'),
         reasoning: 'Added security attributes for _blank links'
       },
       {
         pattern: /<html[^>]*>/i,
-        fix: (match) => match.includes('lang=') ? match : match.replace('>', ' lang="en">'),
+        fix: (match: string) => match.includes('lang=') ? match : match.replace('>', ' lang="en">'),
         reasoning: 'Added missing language attribute'
       }
     ];
@@ -130,8 +131,9 @@ export class ModelRouter {
     // Apply rule-based fixes
     for (const rule of fixes) {
       if (rule.pattern.test(input)) {
+        const fixedContent = input.replace(rule.pattern, rule.fix);
         return {
-          suggestion: input.replace(rule.pattern, rule.fix as any),
+          suggestion: fixedContent,
           confidence: 0.9,
           model: 'rule-based',
           reasoning: rule.reasoning

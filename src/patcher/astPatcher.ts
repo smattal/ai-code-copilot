@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import { createPatch } from 'diff';
 import { suggestAltFromSrc } from '../scanner/htmlScanner';
-import { parse as babelParse } from '@babel/parser';
+import { parse as babelParse, ParserPlugin } from '@babel/parser';
 import generate from '@babel/generator';
 import traverse from '@babel/traverse';
 import * as t from '@babel/types';
@@ -72,15 +72,16 @@ export function generateHtmlAstPatch(filePath: string, src: string): PatchResult
  * Generate AST-driven patch for TSX/JSX files (adds alt attributes to <img>)
  */
 export function generateTsxAstPatch(filePath: string, src: string): PatchResult {
+  const plugins: ParserPlugin[] = ['jsx', 'typescript', 'classProperties', 'decorators-legacy'];
   const ast = babelParse(src, {
     sourceType: 'module',
-    plugins: ['jsx', 'typescript', 'classProperties', 'decorators-legacy'] as any
+    plugins
   });
 
   let changed = false;
   const rationaleParts: string[] = [];
   
-  traverse(ast as any, {
+  traverse(ast, {
     JSXElement(pathNode) {
       const opening = pathNode.node.openingElement;
       if (t.isJSXIdentifier(opening.name) && opening.name.name === 'img') {
@@ -107,7 +108,7 @@ export function generateTsxAstPatch(filePath: string, src: string): PatchResult 
     return { modified: src, rationale: 'No AST-based changes necessary.', aiContent: null };
   }
 
-  const output = generate(ast as any, { retainFunctionParens: true }, src);
+  const output = generate(ast, { retainFunctionParens: true }, src);
   return { modified: output.code, rationale: rationaleParts.join(' '), aiContent: null };
 }
 

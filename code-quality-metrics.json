@@ -1,25 +1,38 @@
 {
   "project": {
     "name": "ai-code-copilot",
-    "totalFiles": 32,
-    "totalLines": 4285,
-    "totalCodeLines": 3674,
-    "totalCommentLines": 145,
-    "totalBlankLines": 466,
+    "totalFiles": 72,
+    "totalLines": 9515,
+    "totalCodeLines": 7790,
+    "totalCommentLines": 239,
+    "totalBlankLines": 1486,
     "languages": {
-      "JavaScript": 1,
       "HTML": 4,
+      "JavaScript": 1,
       "TypeScript JSX": 2,
       "CSS": 2,
-      "TypeScript": 23
+      "TypeScript": 63
     }
   },
   "files": [
     {
+      "filePath": "code-quality-report.html",
+      "language": "HTML",
+      "lines": 459,
+      "codeLines": 423,
+      "commentLines": 0,
+      "complexity": 3,
+      "functions": 0,
+      "classes": 0,
+      "issues": [
+        "Contains console.log statements"
+      ]
+    },
+    {
       "filePath": "jest.config.js",
       "language": "JavaScript",
-      "lines": 6,
-      "codeLines": 5,
+      "lines": 17,
+      "codeLines": 16,
       "commentLines": 0,
       "complexity": 1,
       "functions": 0,
@@ -27,25 +40,12 @@
       "issues": []
     },
     {
-      "filePath": "report.html",
-      "language": "HTML",
-      "lines": 678,
-      "codeLines": 582,
-      "commentLines": 1,
-      "complexity": 9,
-      "functions": 1,
-      "classes": 0,
-      "issues": [
-        "File is too large (>500 lines)"
-      ]
-    },
-    {
       "filePath": "sample_input\\react_components\\user-profile-widget-0001.tsx",
       "language": "TypeScript JSX",
       "lines": 19,
       "codeLines": 15,
       "commentLines": 0,
-      "complexity": 1,
+      "complexity": 2,
       "functions": 0,
       "classes": 0,
       "issues": [
@@ -58,7 +58,7 @@
       "lines": 19,
       "codeLines": 15,
       "commentLines": 0,
-      "complexity": 1,
+      "complexity": 2,
       "functions": 0,
       "classes": 0,
       "issues": [
@@ -110,19 +110,28 @@
       "issues": []
     },
     {
-      "filePath": "src\\cli.ts",
+      "filePath": "src\\cli\\handlers.ts",
       "language": "TypeScript",
-      "lines": 194,
-      "codeLines": 158,
-      "commentLines": 16,
-      "complexity": 31,
-      "functions": 0,
+      "lines": 171,
+      "codeLines": 139,
+      "commentLines": 1,
+      "complexity": 33,
+      "functions": 6,
       "classes": 0,
       "issues": [
-        "High complexity (31)",
-        "Uses \"any\" type",
-        "Contains console.log statements"
+        "High complexity (33)"
       ]
+    },
+    {
+      "filePath": "src\\cli.ts",
+      "language": "TypeScript",
+      "lines": 74,
+      "codeLines": 71,
+      "commentLines": 0,
+      "complexity": 15,
+      "functions": 0,
+      "classes": 0,
+      "issues": []
     },
     {
       "filePath": "src\\index.ts",
@@ -141,7 +150,7 @@
       "lines": 65,
       "codeLines": 56,
       "commentLines": 3,
-      "complexity": 5,
+      "complexity": 9,
       "functions": 2,
       "classes": 1,
       "issues": []
@@ -149,14 +158,14 @@
     {
       "filePath": "src\\model\\modelRouter.ts",
       "language": "TypeScript",
-      "lines": 149,
-      "codeLines": 123,
+      "lines": 151,
+      "codeLines": 125,
       "commentLines": 10,
-      "complexity": 12,
+      "complexity": 22,
       "functions": 4,
       "classes": 1,
       "issues": [
-        "Uses \"any\" type"
+        "High complexity (22)"
       ]
     },
     {
@@ -173,29 +182,46 @@
     {
       "filePath": "src\\patcher\\astPatcher.ts",
       "language": "TypeScript",
-      "lines": 120,
-      "codeLines": 93,
+      "lines": 121,
+      "codeLines": 94,
       "commentLines": 13,
-      "complexity": 15,
+      "complexity": 18,
       "functions": 3,
       "classes": 0,
-      "issues": [
-        "Uses \"any\" type"
-      ]
+      "issues": []
+    },
+    {
+      "filePath": "src\\patcher\\contextGatherer.ts",
+      "language": "TypeScript",
+      "lines": 65,
+      "codeLines": 42,
+      "commentLines": 9,
+      "complexity": 7,
+      "functions": 2,
+      "classes": 1,
+      "issues": []
+    },
+    {
+      "filePath": "src\\patcher\\heuristicPatcher.ts",
+      "language": "TypeScript",
+      "lines": 68,
+      "codeLines": 43,
+      "commentLines": 15,
+      "complexity": 14,
+      "functions": 0,
+      "classes": 1,
+      "issues": []
     },
     {
       "filePath": "src\\patcher\\patchGenerator.ts",
       "language": "TypeScript",
-      "lines": 102,
-      "codeLines": 72,
-      "commentLines": 14,
-      "complexity": 23,
-      "functions": 2,
+      "lines": 72,
+      "codeLines": 57,
+      "commentLines": 3,
+      "complexity": 7,
+      "functions": 5,
       "classes": 0,
-      "issues": [
-        "High complexity (23)",
-        "Uses \"any\" type"
-      ]
+      "issues": []
     },
     {
       "filePath": "src\\patcher\\__init__.ts",
@@ -214,7 +240,18 @@
       "lines": 60,
       "codeLines": 49,
       "commentLines": 3,
-      "complexity": 9,
+      "complexity": 15,
+      "functions": 3,
+      "classes": 0,
+      "issues": []
+    },
+    {
+      "filePath": "src\\scanner\\fileUtils.ts",
+      "language": "TypeScript",
+      "lines": 69,
+      "codeLines": 52,
+      "commentLines": 1,
+      "complexity": 12,
       "functions": 3,
       "classes": 0,
       "issues": []
@@ -225,7 +262,7 @@
       "lines": 57,
       "codeLines": 52,
       "commentLines": 0,
-      "complexity": 7,
+      "complexity": 10,
       "functions": 3,
       "classes": 0,
       "issues": []
@@ -233,17 +270,24 @@
     {
       "filePath": "src\\scanner\\index.ts",
       "language": "TypeScript",
-      "lines": 154,
-      "codeLines": 121,
-      "commentLines": 11,
-      "complexity": 29,
-      "functions": 6,
+      "lines": 107,
+      "codeLines": 86,
+      "commentLines": 4,
+      "complexity": 14,
+      "functions": 5,
       "classes": 0,
-      "issues": [
-        "High complexity (29)",
-        "Uses \"any\" type",
-        "Contains console.log statements"
-      ]
+      "issues": []
+    },
+    {
+      "filePath": "src\\scanner\\issueMapper.ts",
+      "language": "TypeScript",
+      "lines": 31,
+      "codeLines": 26,
+      "commentLines": 0,
+      "complexity": 8,
+      "functions": 4,
+      "classes": 0,
+      "issues": []
     },
     {
       "filePath": "src\\scanner\\tsxScanner.ts",
@@ -251,8 +295,21 @@
       "lines": 70,
       "codeLines": 54,
       "commentLines": 7,
-      "complexity": 15,
+      "complexity": 23,
       "functions": 1,
+      "classes": 0,
+      "issues": [
+        "High complexity (23)"
+      ]
+    },
+    {
+      "filePath": "src\\scanner\\types.ts",
+      "language": "TypeScript",
+      "lines": 20,
+      "codeLines": 17,
+      "commentLines": 0,
+      "complexity": 2,
+      "functions": 0,
       "classes": 0,
       "issues": []
     },
@@ -273,7 +330,7 @@
       "lines": 4,
       "codeLines": 3,
       "commentLines": 0,
-      "complexity": 1,
+      "complexity": 3,
       "functions": 1,
       "classes": 0,
       "issues": []
@@ -284,7 +341,7 @@
       "lines": 17,
       "codeLines": 15,
       "commentLines": 0,
-      "complexity": 1,
+      "complexity": 3,
       "functions": 0,
       "classes": 0,
       "issues": []
@@ -292,15 +349,13 @@
     {
       "filePath": "src\\types.ts",
       "language": "TypeScript",
-      "lines": 5,
-      "codeLines": 4,
+      "lines": 11,
+      "codeLines": 9,
       "commentLines": 0,
       "complexity": 1,
       "functions": 0,
       "classes": 0,
-      "issues": [
-        "Uses \"any\" type"
-      ]
+      "issues": []
     },
     {
       "filePath": "src\\utils\\cache.ts",
@@ -314,33 +369,62 @@
       "issues": []
     },
     {
-      "filePath": "src\\utils\\codeQualityReport.ts",
+      "filePath": "src\\utils\\codeQualityAnalyzer.ts",
       "language": "TypeScript",
-      "lines": 949,
-      "codeLines": 834,
-      "commentLines": 18,
-      "complexity": 61,
-      "functions": 10,
+      "lines": 56,
+      "codeLines": 43,
+      "commentLines": 4,
+      "complexity": 1,
+      "functions": 1,
+      "classes": 1,
+      "issues": []
+    },
+    {
+      "filePath": "src\\utils\\fileAnalyzer.ts",
+      "language": "TypeScript",
+      "lines": 170,
+      "codeLines": 138,
+      "commentLines": 3,
+      "complexity": 28,
+      "functions": 1,
       "classes": 1,
       "issues": [
-        "File is too large (>500 lines)",
-        "High complexity (61)",
-        "Uses \"any\" type",
-        "Contains console.log statements"
+        "High complexity (28)",
+        "Uses \"any\" type"
       ]
     },
     {
       "filePath": "src\\utils\\htmlReportGenerator.ts",
       "language": "TypeScript",
-      "lines": 431,
-      "codeLines": 414,
-      "commentLines": 1,
-      "complexity": 11,
+      "lines": 432,
+      "codeLines": 416,
+      "commentLines": 0,
+      "complexity": 17,
       "functions": 4,
       "classes": 0,
-      "issues": [
-        "Contains console.log statements"
-      ]
+      "issues": []
+    },
+    {
+      "filePath": "src\\utils\\logger.ts",
+      "language": "TypeScript",
+      "lines": 81,
+      "codeLines": 61,
+      "commentLines": 5,
+      "complexity": 9,
+      "functions": 0,
+      "classes": 1,
+      "issues": []
+    },
+    {
+      "filePath": "src\\utils\\metricsCalculator.ts",
+      "language": "TypeScript",
+      "lines": 229,
+      "codeLines": 185,
+      "commentLines": 8,
+      "complexity": 7,
+      "functions": 0,
+      "classes": 1,
+      "issues": []
     },
     {
       "filePath": "src\\utils\\prompts.ts",
@@ -348,10 +432,36 @@
       "lines": 181,
       "codeLines": 154,
       "commentLines": 0,
-      "complexity": 15,
+      "complexity": 31,
       "functions": 7,
       "classes": 1,
+      "issues": [
+        "High complexity (31)"
+      ]
+    },
+    {
+      "filePath": "src\\utils\\qualityMetricsTypes.ts",
+      "language": "TypeScript",
+      "lines": 79,
+      "codeLines": 67,
+      "commentLines": 3,
+      "complexity": 2,
+      "functions": 0,
+      "classes": 0,
       "issues": []
+    },
+    {
+      "filePath": "src\\utils\\qualityReporter.ts",
+      "language": "TypeScript",
+      "lines": 333,
+      "codeLines": 297,
+      "commentLines": 12,
+      "complexity": 41,
+      "functions": 2,
+      "classes": 0,
+      "issues": [
+        "High complexity (41)"
+      ]
     },
     {
       "filePath": "src\\utils\\redact.ts",
@@ -359,21 +469,135 @@
       "lines": 79,
       "codeLines": 41,
       "commentLines": 20,
-      "complexity": 6,
+      "complexity": 32,
       "functions": 3,
       "classes": 0,
       "issues": [
-        "Uses \"any\" type"
+        "High complexity (32)"
       ]
     },
     {
       "filePath": "src\\utils\\verificationLoop.ts",
       "language": "TypeScript",
       "lines": 401,
-      "codeLines": 361,
-      "commentLines": 8,
-      "complexity": 16,
+      "codeLines": 362,
+      "commentLines": 7,
+      "complexity": 30,
       "functions": 5,
+      "classes": 0,
+      "issues": [
+        "High complexity (30)"
+      ]
+    },
+    {
+      "filePath": "test\\astPatcher.test.ts",
+      "language": "TypeScript",
+      "lines": 107,
+      "codeLines": 80,
+      "commentLines": 0,
+      "complexity": 1,
+      "functions": 6,
+      "classes": 0,
+      "issues": []
+    },
+    {
+      "filePath": "test\\cache.advanced.test.ts",
+      "language": "TypeScript",
+      "lines": 295,
+      "codeLines": 233,
+      "commentLines": 9,
+      "complexity": 15,
+      "functions": 0,
+      "classes": 0,
+      "issues": []
+    },
+    {
+      "filePath": "test\\cache.test.ts",
+      "language": "TypeScript",
+      "lines": 94,
+      "codeLines": 78,
+      "commentLines": 0,
+      "complexity": 5,
+      "functions": 0,
+      "classes": 0,
+      "issues": []
+    },
+    {
+      "filePath": "test\\codeQualityAnalyzer.integration.test.ts",
+      "language": "TypeScript",
+      "lines": 224,
+      "codeLines": 175,
+      "commentLines": 5,
+      "complexity": 10,
+      "functions": 1,
+      "classes": 1,
+      "issues": []
+    },
+    {
+      "filePath": "test\\codeQualityAnalyzer.test.ts",
+      "language": "TypeScript",
+      "lines": 55,
+      "codeLines": 42,
+      "commentLines": 0,
+      "complexity": 2,
+      "functions": 0,
+      "classes": 0,
+      "issues": []
+    },
+    {
+      "filePath": "test\\cssScanner.test.ts",
+      "language": "TypeScript",
+      "lines": 65,
+      "codeLines": 47,
+      "commentLines": 0,
+      "complexity": 3,
+      "functions": 0,
+      "classes": 0,
+      "issues": []
+    },
+    {
+      "filePath": "test\\fileAnalyzer.advanced.test.ts",
+      "language": "TypeScript",
+      "lines": 287,
+      "codeLines": 232,
+      "commentLines": 6,
+      "complexity": 18,
+      "functions": 5,
+      "classes": 3,
+      "issues": [
+        "Uses \"any\" type"
+      ]
+    },
+    {
+      "filePath": "test\\fileAnalyzer.test.ts",
+      "language": "TypeScript",
+      "lines": 68,
+      "codeLines": 57,
+      "commentLines": 0,
+      "complexity": 4,
+      "functions": 0,
+      "classes": 0,
+      "issues": []
+    },
+    {
+      "filePath": "test\\handlers.test.ts",
+      "language": "TypeScript",
+      "lines": 198,
+      "codeLines": 151,
+      "commentLines": 2,
+      "complexity": 6,
+      "functions": 0,
+      "classes": 0,
+      "issues": []
+    },
+    {
+      "filePath": "test\\htmlReportGenerator.test.ts",
+      "language": "TypeScript",
+      "lines": 137,
+      "codeLines": 104,
+      "commentLines": 0,
+      "complexity": 4,
+      "functions": 0,
       "classes": 0,
       "issues": []
     },
@@ -389,11 +613,229 @@
       "issues": []
     },
     {
+      "filePath": "test\\logger.test.ts",
+      "language": "TypeScript",
+      "lines": 52,
+      "codeLines": 44,
+      "commentLines": 0,
+      "complexity": 1,
+      "functions": 0,
+      "classes": 0,
+      "issues": []
+    },
+    {
+      "filePath": "test\\metricsCalculator.advanced.test.ts",
+      "language": "TypeScript",
+      "lines": 404,
+      "codeLines": 347,
+      "commentLines": 2,
+      "complexity": 6,
+      "functions": 0,
+      "classes": 0,
+      "issues": []
+    },
+    {
+      "filePath": "test\\metricsCalculator.test.ts",
+      "language": "TypeScript",
+      "lines": 172,
+      "codeLines": 138,
+      "commentLines": 3,
+      "complexity": 1,
+      "functions": 0,
+      "classes": 0,
+      "issues": []
+    },
+    {
+      "filePath": "test\\mockModel.altText.test.ts",
+      "language": "TypeScript",
+      "lines": 86,
+      "codeLines": 61,
+      "commentLines": 0,
+      "complexity": 2,
+      "functions": 0,
+      "classes": 0,
+      "issues": []
+    },
+    {
+      "filePath": "test\\mockModel.test.ts",
+      "language": "TypeScript",
+      "lines": 50,
+      "codeLines": 37,
+      "commentLines": 0,
+      "complexity": 5,
+      "functions": 0,
+      "classes": 0,
+      "issues": []
+    },
+    {
+      "filePath": "test\\model.integration.test.ts",
+      "language": "TypeScript",
+      "lines": 363,
+      "codeLines": 287,
+      "commentLines": 3,
+      "complexity": 11,
+      "functions": 1,
+      "classes": 0,
+      "issues": [
+        "Uses \"any\" type"
+      ]
+    },
+    {
+      "filePath": "test\\modelRouter.test.ts",
+      "language": "TypeScript",
+      "lines": 131,
+      "codeLines": 100,
+      "commentLines": 0,
+      "complexity": 1,
+      "functions": 0,
+      "classes": 0,
+      "issues": []
+    },
+    {
+      "filePath": "test\\patchGenerator.test.ts",
+      "language": "TypeScript",
+      "lines": 114,
+      "codeLines": 83,
+      "commentLines": 0,
+      "complexity": 7,
+      "functions": 2,
+      "classes": 0,
+      "issues": []
+    },
+    {
+      "filePath": "test\\qualityReporter.test.ts",
+      "language": "TypeScript",
+      "lines": 126,
+      "codeLines": 108,
+      "commentLines": 0,
+      "complexity": 2,
+      "functions": 0,
+      "classes": 0,
+      "issues": []
+    },
+    {
+      "filePath": "test\\redact.test.ts",
+      "language": "TypeScript",
+      "lines": 37,
+      "codeLines": 31,
+      "commentLines": 0,
+      "complexity": 2,
+      "functions": 0,
+      "classes": 0,
+      "issues": []
+    },
+    {
+      "filePath": "test\\redactSecrets.test.ts",
+      "language": "TypeScript",
+      "lines": 170,
+      "codeLines": 129,
+      "commentLines": 1,
+      "complexity": 5,
+      "functions": 0,
+      "classes": 0,
+      "issues": []
+    },
+    {
+      "filePath": "test\\scanner.comprehensive.test.ts",
+      "language": "TypeScript",
+      "lines": 414,
+      "codeLines": 352,
+      "commentLines": 4,
+      "complexity": 5,
+      "functions": 7,
+      "classes": 0,
+      "issues": [
+        "Uses \"any\" type"
+      ]
+    },
+    {
+      "filePath": "test\\scanner.e2e.test.ts",
+      "language": "TypeScript",
+      "lines": 196,
+      "codeLines": 144,
+      "commentLines": 10,
+      "complexity": 9,
+      "functions": 1,
+      "classes": 0,
+      "issues": []
+    },
+    {
+      "filePath": "test\\scanner.test.ts",
+      "language": "TypeScript",
+      "lines": 64,
+      "codeLines": 48,
+      "commentLines": 0,
+      "complexity": 4,
+      "functions": 1,
+      "classes": 0,
+      "issues": []
+    },
+    {
+      "filePath": "test\\system.integration.test.ts",
+      "language": "TypeScript",
+      "lines": 522,
+      "codeLines": 397,
+      "commentLines": 34,
+      "complexity": 25,
+      "functions": 5,
+      "classes": 1,
+      "issues": [
+        "High complexity (25)",
+        "Uses \"any\" type"
+      ]
+    },
+    {
+      "filePath": "test\\tsxScanner.test.ts",
+      "language": "TypeScript",
+      "lines": 74,
+      "codeLines": 54,
+      "commentLines": 0,
+      "complexity": 3,
+      "functions": 5,
+      "classes": 0,
+      "issues": []
+    },
+    {
+      "filePath": "test\\utils.integration.test.ts",
+      "language": "TypeScript",
+      "lines": 445,
+      "codeLines": 358,
+      "commentLines": 10,
+      "complexity": 19,
+      "functions": 4,
+      "classes": 0,
+      "issues": [
+        "Uses \"any\" type"
+      ]
+    },
+    {
+      "filePath": "test\\verificationFormatting.test.ts",
+      "language": "TypeScript",
+      "lines": 167,
+      "codeLines": 128,
+      "commentLines": 0,
+      "complexity": 2,
+      "functions": 0,
+      "classes": 0,
+      "issues": []
+    },
+    {
+      "filePath": "test\\verificationLoop.test.ts",
+      "language": "TypeScript",
+      "lines": 85,
+      "codeLines": 68,
+      "commentLines": 0,
+      "complexity": 2,
+      "functions": 0,
+      "classes": 0,
+      "issues": []
+    },
+    {
       "filePath": "verification-report.html",
       "language": "HTML",
       "lines": 238,
-      "codeLines": 221,
-      "commentLines": 1,
+      "codeLines": 222,
+      "commentLines": 0,
       "complexity": 1,
       "functions": 0,
       "classes": 0,
@@ -401,42 +843,46 @@
     }
   ],
   "codeComplexity": {
-    "averageComplexity": 9.5,
-    "maxComplexity": 61,
-    "filesOverThreshold": 6,
+    "averageComplexity": 8.8,
+    "maxComplexity": 41,
+    "filesOverThreshold": 14,
     "complexFiles": [
       {
-        "file": "src\\utils\\codeQualityReport.ts",
-        "complexity": 61
+        "file": "src\\utils\\qualityReporter.ts",
+        "complexity": 41
       },
       {
-        "file": "src\\cli.ts",
+        "file": "src\\cli\\handlers.ts",
+        "complexity": 33
+      },
+      {
+        "file": "src\\utils\\redact.ts",
+        "complexity": 32
+      },
+      {
+        "file": "src\\utils\\prompts.ts",
         "complexity": 31
       },
       {
-        "file": "src\\scanner\\index.ts",
-        "complexity": 29
-      },
-      {
-        "file": "src\\patcher\\patchGenerator.ts",
-        "complexity": 23
-      },
-      {
-        "file": "src\\utils\\cache.ts",
-        "complexity": 16
+        "file": "src\\utils\\verificationLoop.ts",
+        "complexity": 30
       }
     ]
   },
   "maintainability": {
-    "score": 40,
+    "score": 42,
     "codeSmells": [
-      "File is too large (>500 lines)",
       "Contains console.log statements",
-      "High complexity (31)",
-      "Uses \"any\" type",
+      "High complexity (33)",
+      "High complexity (22)",
       "High complexity (23)",
-      "High complexity (29)",
-      "High complexity (61)"
+      "High complexity (28)",
+      "Uses \"any\" type",
+      "High complexity (31)",
+      "High complexity (41)",
+      "High complexity (32)",
+      "High complexity (30)",
+      "High complexity (25)"
     ],
     "duplicateCode": 0,
     "longFunctions": 0,
@@ -444,9 +890,9 @@
   },
   "testCoverage": {
     "hasTests": true,
-    "testFiles": 1,
-    "testToCodeRatio": 0.03,
-    "estimatedCoverage": 3
+    "testFiles": 30,
+    "testToCodeRatio": 0.71,
+    "estimatedCoverage": 71
   },
   "dependencies": {
     "total": 15,
@@ -460,11 +906,11 @@
     "hasLicense": true,
     "hasGitignore": true,
     "hasTypeScript": true,
-    "hasLinting": false,
+    "hasLinting": true,
     "hasTesting": true,
     "hasCI": false,
     "hasDocs": false
   },
-  "overallScore": 48,
-  "grade": "D"
+  "overallScore": 68,
+  "grade": "B-"
 }

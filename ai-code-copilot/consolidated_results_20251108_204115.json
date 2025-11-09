@@ -1,0 +1,211 @@
+[
+  {
+    "fileName": "react_components/user-profile-widget-0001.tsx",
+    "fileType": "TSX",
+    "isValid": false,
+    "issues": [
+      {
+        "category": "accessibility",
+        "description": "Image tag is missing alt text in react_components/user-profile-widget-0001.tsx (line unknown)",
+        "severity": "medium"
+      },
+      {
+        "category": "structure",
+        "description": "Anchor (line X) opens in new tab without rel=\"noopener\"",
+        "severity": "medium"
+      },
+      {
+        "category": "structure",
+        "description": "Literal text \"View Profile\" may be missing localization in react_components/user-profile-widget-0001.tsx (line unknown)",
+        "severity": "medium"
+      },
+      {
+        "category": "structure",
+        "description": "Possible malformed JSX near text \"from\" (missing \">\" after tag?)",
+        "severity": "high"
+      },
+      {
+        "category": "structure",
+        "description": "Possible malformed JSX near text \"className\" (missing \">\" after tag?)",
+        "severity": "high"
+      },
+      {
+        "category": "structure",
+        "description": "Possible malformed JSX near text \"loading\" (missing \">\" after tag?)",
+        "severity": "high"
+      },
+      {
+        "category": "structure",
+        "description": "Possible malformed JSX near text \"target\" (missing \">\" after tag?)",
+        "severity": "high"
+      },
+      {
+        "category": "structure",
+        "description": "Possible malformed JSX near text \"Follow\" (missing \">\" after tag?)",
+        "severity": "high"
+      }
+    ],
+    "aiSuggestedPatches": [
+      {
+        "diff": "Add alt attribute",
+        "rationale": "Provide descriptive alt text for accessibility."
+      },
+      {
+        "diff": "Add rel=\"noopener noreferrer\"",
+        "rationale": "Prevent reverse tabnabbing and improve security."
+      },
+      {
+        "diff": "Wrap text with t('key')",
+        "rationale": "Use i18n for translatable UI strings."
+      },
+      {
+        "diff": "Fix tag closing > before text",
+        "rationale": "Malformed JSX can break rendering."
+      },
+      {
+        "diff": "Fix tag closing > before text",
+        "rationale": "Malformed JSX can break rendering."
+      },
+      {
+        "diff": "Fix tag closing > before text",
+        "rationale": "Malformed JSX can break rendering."
+      },
+      {
+        "diff": "Fix tag closing > before text",
+        "rationale": "Malformed JSX can break rendering."
+      },
+      {
+        "diff": "Fix tag closing > before text",
+        "rationale": "Malformed JSX can break rendering."
+      }
+    ],
+    "rationale": "Automatically generated React component test case."
+  },
+  {
+    "fileName": "react_components/user-profile-widget-0002.tsx",
+    "fileType": "TSX",
+    "isValid": false,
+    "issues": [
+      {
+        "category": "structure",
+        "description": "Anchor opens in new tab without rel=\"noopener\"",
+        "severity": "medium"
+      },
+      {
+        "category": "structure",
+        "description": "Possible malformed JSX near text \"from\" (missing \">\" after tag?)",
+        "severity": "high"
+      },
+      {
+        "category": "structure",
+        "description": "Possible malformed JSX near text \"className\" (missing \">\" after tag?)",
+        "severity": "high"
+      },
+      {
+        "category": "structure",
+        "description": "Possible malformed JSX near text \"alt\" (missing \">\" after tag?)",
+        "severity": "high"
+      },
+      {
+        "category": "structure",
+        "description": "Possible malformed JSX near text \"id\" (missing \">\" after tag?)",
+        "severity": "high"
+      },
+      {
+        "category": "structure",
+        "description": "Possible malformed JSX near text \"target\" (missing \">\" after tag?)",
+        "severity": "high"
+      }
+    ],
+    "aiSuggestedPatches": [
+      {
+        "diff": "Add rel=\"noopener noreferrer\"",
+        "rationale": "Prevent reverse tabnabbing and improve security."
+      },
+      {
+        "diff": "Fix tag closing > before text",
+        "rationale": "Malformed JSX can break rendering."
+      },
+      {
+        "diff": "Fix tag closing > before text",
+        "rationale": "Malformed JSX can break rendering."
+      },
+      {
+        "diff": "Fix tag closing > before text",
+        "rationale": "Malformed JSX can break rendering."
+      },
+      {
+        "diff": "Fix tag closing > before text",
+        "rationale": "Malformed JSX can break rendering."
+      },
+      {
+        "diff": "Fix tag closing > before text",
+        "rationale": "Malformed JSX can break rendering."
+      }
+    ],
+    "rationale": "Automatically generated React component test case."
+  },
+  {
+    "fileName": "stylesheets/marketing-landing-0005.css",
+    "fileType": "CSS",
+    "isValid": true,
+    "issues": [
+      {
+        "category": "structure",
+        "description": "Color #aaa has low contrast against #fff in selector '.subtitle'",
+        "severity": "low"
+      },
+      {
+        "category": "design",
+        "description": "Styles for .marketing-header and .cta-button do not use design tokens (CSS variables)",
+        "severity": "low"
+      }
+    ],
+    "aiSuggestedPatches": [
+      {
+        "diff": "Use design token color with sufficient contrast",
+        "rationale": "Meets WCAG AA contrast ratio."
+      },
+      {
+        "diff": "Replace hard-coded values with design tokens",
+        "rationale": "Keeps styles consistent with design system."
+      }
+    ],
+    "rationale": "Automatically generated CSS test case."
+  },
+  {
+    "fileName": "stylesheets/marketing-landing-0006.css",
+    "fileType": "CSS",
+    "isValid": true,
+    "issues": [],
+    "aiSuggestedPatches": [],
+    "rationale": "Automatically generated CSS test case."
+  },
+  {
+    "fileName": "web_components/internal-dashboard-0001.html",
+    "fileType": "HTML",
+    "isValid": true,
+    "issues": [],
+    "aiSuggestedPatches": [],
+    "rationale": "Automatically generated test case for evaluator pipelines."
+  },
+  {
+    "fileName": "web_components/internal-dashboard-0004.html",
+    "fileType": "HTML",
+    "isValid": true,
+    "issues": [
+      {
+        "category": "accessibility",
+        "description": "Image tag is missing alt text in web_components/internal-dashboard-0004.html (line unknown)",
+        "severity": "medium"
+      }
+    ],
+    "aiSuggestedPatches": [
+      {
+        "diff": "Suggested fix: img-alt-missing",
+        "rationale": "Internal dashboard hero"
+      }
+    ],
+    "rationale": "Automatically generated test case for evaluator pipelines."
+  }
+]
