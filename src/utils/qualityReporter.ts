@@ -5,6 +5,21 @@
 
 import { CodeQualityMetrics } from './qualityMetricsTypes';
 
+// Helper functions to determine status icons and classes
+function getComplexityIcon(value: number, threshold: number): string {
+  return value > threshold ? '🔴' : '✅';
+}
+
+function getScoreIcon(score: number): string {
+  if (score < 50) return '🔴';
+  if (score < 70) return '⚠️';
+  return '✅';
+}
+
+function getBooleanIcon(value: boolean): string {
+  return value ? '✅' : '🔴';
+}
+
 export function generateCodeQualityReport(metrics: CodeQualityMetrics): string {
   const lines: string[] = [];
   
@@ -23,19 +38,20 @@ export function generateCodeQualityReport(metrics: CodeQualityMetrics): string {
   lines.push(`  • Comment Lines: ${metrics.project.totalCommentLines.toLocaleString()}\n`);
 
   // Complexity
-  const complexityIcon = metrics.codeComplexity.averageComplexity > 15 ? '🔴' : '✅';
+  const complexityIcon = getComplexityIcon(metrics.codeComplexity.averageComplexity, 15);
+  const maxComplexityIcon = getComplexityIcon(metrics.codeComplexity.maxComplexity, 30);
   lines.push('🔧 Code Complexity:');
   lines.push(`  • Average: ${metrics.codeComplexity.averageComplexity} ${complexityIcon}`);
-  lines.push(`  • Maximum: ${metrics.codeComplexity.maxComplexity} ${metrics.codeComplexity.maxComplexity > 30 ? '🔴' : '✅'}`);
+  lines.push(`  • Maximum: ${metrics.codeComplexity.maxComplexity} ${maxComplexityIcon}`);
   lines.push(`  • Files Over Threshold: ${metrics.codeComplexity.filesOverThreshold}\n`);
 
   // Maintainability
-  const maintIcon = metrics.maintainability.score < 50 ? '🔴' : metrics.maintainability.score < 70 ? '⚠️' : '✅';
+  const maintIcon = getScoreIcon(metrics.maintainability.score);
   lines.push('🔨 Maintainability:');
   lines.push(`  • Score: ${metrics.maintainability.score}/100 ${maintIcon}\n`);
 
   // Test Coverage
-  const testIcon = metrics.testCoverage.estimatedCoverage < 50 ? '🔴' : metrics.testCoverage.estimatedCoverage < 70 ? '⚠️' : '✅';
+  const testIcon = getScoreIcon(metrics.testCoverage.estimatedCoverage);
   lines.push('🧪 Test Coverage:');
   lines.push(`  • Has Tests: ${metrics.testCoverage.hasTests ? 'Yes ✅' : 'No 🔴'}`);
   lines.push(`  • Test Files: ${metrics.testCoverage.testFiles}`);
@@ -48,16 +64,17 @@ export function generateCodeQualityReport(metrics: CodeQualityMetrics): string {
   lines.push(`  • Development: ${metrics.dependencies.development}\n`);
 
   // Best Practices
+  const bestPracticeTotal = Object.values(metrics.bestPractices).filter(v => typeof v === 'boolean').length;
   const practiceCount = Object.values(metrics.bestPractices).filter(Boolean).length;
   lines.push('✨ Best Practices:');
-  lines.push(`  • Score: ${practiceCount}/8`);
-  lines.push(`  • README: ${metrics.bestPractices.hasReadme ? '✅' : '🔴'}`);
-  lines.push(`  • License: ${metrics.bestPractices.hasLicense ? '✅' : '🔴'}`);
-  lines.push(`  • TypeScript: ${metrics.bestPractices.hasTypeScript ? '✅' : '🔴'}`);
-  lines.push(`  • Linting: ${metrics.bestPractices.hasLinting ? '✅' : '🔴'}`);
-  lines.push(`  • Testing: ${metrics.bestPractices.hasTesting ? '✅' : '🔴'}`);
-  lines.push(`  • CI/CD: ${metrics.bestPractices.hasCI ? '✅' : '🔴'}`);
-  lines.push(`  • Documentation: ${metrics.bestPractices.hasDocs ? '✅' : '🔴'}\n`);
+  lines.push(`  • Score: ${practiceCount}/${bestPracticeTotal}`);
+  lines.push(`  • README: ${getBooleanIcon(metrics.bestPractices.hasReadme)}`);
+  lines.push(`  • License: ${getBooleanIcon(metrics.bestPractices.hasLicense)}`);
+  lines.push(`  • TypeScript: ${getBooleanIcon(metrics.bestPractices.hasTypeScript)}`);
+  lines.push(`  • Linting: ${getBooleanIcon(metrics.bestPractices.hasLinting)}`);
+  lines.push(`  • Testing: ${getBooleanIcon(metrics.bestPractices.hasTesting)}`);
+  lines.push(`  • CI/CD: ${getBooleanIcon(metrics.bestPractices.hasCI)}`);
+  lines.push(`  • Documentation: ${getBooleanIcon(metrics.bestPractices.hasDocs)}\n`);
 
   // Code Smells
   if (metrics.maintainability.codeSmells.length > 0) {
@@ -73,16 +90,29 @@ export function generateCodeQualityReport(metrics: CodeQualityMetrics): string {
   return lines.join('\n');
 }
 
-export function generateCodeQualityHTML(metrics: CodeQualityMetrics): string {
-  const gradeColor = metrics.overallScore >= 70 ? '#4caf50' : metrics.overallScore >= 50 ? '#ff9800' : '#f44336';
-  
-  return `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Code Quality Report</title>
-  <style>
+// HTML generation helpers
+function getStatusClass(value: number, goodThreshold: number, warnThreshold: number): string {
+  if (value >= goodThreshold) return 'status-good';
+  if (value >= warnThreshold) return 'status-warn';
+  return 'status-bad';
+}
+
+function getComplexityStatusClass(value: number, threshold: number): string {
+  return value > threshold ? 'status-bad' : 'status-good';
+}
+
+function getBooleanStatusClass(value: boolean): string {
+  return value ? 'status-good' : 'status-bad';
+}
+
+function getGradeColor(score: number): string {
+  if (score >= 70) return '#4caf50';
+  if (score >= 50) return '#ff9800';
+  return '#f44336';
+}
+
+function generateHTMLStyles(gradeColor: string): string {
+  return `
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
@@ -165,7 +195,200 @@ export function generateCodeQualityHTML(metrics: CodeQualityMetrics): string {
       padding: 20px;
       color: #666;
       font-size: 14px;
-    }
+    }`;
+}
+
+function generateProjectOverviewCard(project: CodeQualityMetrics['project']): string {
+  return `
+        <div class="metric-card">
+          <h3>📊 Project Overview</h3>
+          <div class="metric-row">
+            <span class="metric-label">Total Files</span>
+            <span class="metric-value">${project.totalFiles}</span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-label">Total Lines</span>
+            <span class="metric-value">${project.totalLines.toLocaleString()}</span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-label">Code Lines</span>
+            <span class="metric-value">${project.totalCodeLines.toLocaleString()}</span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-label">Comment Lines</span>
+            <span class="metric-value">${project.totalCommentLines.toLocaleString()}</span>
+          </div>
+        </div>`;
+}
+
+function generateComplexityCard(complexity: CodeQualityMetrics['codeComplexity']): string {
+  const avgClass = getComplexityStatusClass(complexity.averageComplexity, 15);
+  const maxClass = getComplexityStatusClass(complexity.maxComplexity, 30);
+  const thresholdClass = complexity.filesOverThreshold > 0 ? 'status-warn' : 'status-good';
+  
+  return `
+        <div class="metric-card">
+          <h3>🔧 Code Complexity</h3>
+          <div class="metric-row">
+            <span class="metric-label">Average</span>
+            <span class="metric-value ${avgClass}">
+              ${complexity.averageComplexity}
+            </span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-label">Maximum</span>
+            <span class="metric-value ${maxClass}">
+              ${complexity.maxComplexity}
+            </span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-label">Files Over Threshold</span>
+            <span class="metric-value ${thresholdClass}">
+              ${complexity.filesOverThreshold}
+            </span>
+          </div>
+        </div>`;
+}
+
+function generateMaintainabilityCard(maintainability: CodeQualityMetrics['maintainability']): string {
+  const scoreClass = getStatusClass(maintainability.score, 70, 50);
+  const smellsClass = maintainability.codeSmells.length > 0 ? 'status-warn' : 'status-good';
+  
+  return `
+        <div class="metric-card">
+          <h3>🔨 Maintainability</h3>
+          <div class="metric-row">
+            <span class="metric-label">Score</span>
+            <span class="metric-value ${scoreClass}">
+              ${maintainability.score}/100
+            </span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-label">Code Smells</span>
+            <span class="metric-value ${smellsClass}">
+              ${maintainability.codeSmells.length}
+            </span>
+          </div>
+        </div>`;
+}
+
+function generateTestCoverageCard(testCoverage: CodeQualityMetrics['testCoverage']): string {
+  const hasTestsClass = getBooleanStatusClass(testCoverage.hasTests);
+  const coverageClass = getStatusClass(testCoverage.estimatedCoverage, 70, 50);
+  
+  return `
+        <div class="metric-card">
+          <h3>🧪 Test Coverage</h3>
+          <div class="metric-row">
+            <span class="metric-label">Has Tests</span>
+            <span class="metric-value ${hasTestsClass}">
+              ${testCoverage.hasTests ? 'Yes' : 'No'}
+            </span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-label">Test Files</span>
+            <span class="metric-value">${testCoverage.testFiles}</span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-label">Estimated Coverage</span>
+            <span class="metric-value ${coverageClass}">
+              ${testCoverage.estimatedCoverage}%
+            </span>
+          </div>
+        </div>`;
+}
+
+function generateDependenciesCard(dependencies: CodeQualityMetrics['dependencies']): string {
+  return `
+        <div class="metric-card">
+          <h3>📦 Dependencies</h3>
+          <div class="metric-row">
+            <span class="metric-label">Total</span>
+            <span class="metric-value">${dependencies.total}</span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-label">Production</span>
+            <span class="metric-value">${dependencies.production}</span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-label">Development</span>
+            <span class="metric-value">${dependencies.development}</span>
+          </div>
+        </div>`;
+}
+function generateBestPracticesCard(bestPractices: CodeQualityMetrics['bestPractices']): string {
+  return `
+        <div class="metric-card">
+          <h3>✨ Best Practices</h3>
+          <div class="metric-row">
+            <span class="metric-label">README</span>
+            <span class="metric-value ${getBooleanStatusClass(bestPractices.hasReadme)}">
+              ${bestPractices.hasReadme ? '✅' : '❌'}
+            </span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-label">License</span>
+            <span class="metric-value ${getBooleanStatusClass(bestPractices.hasLicense)}">
+              ${bestPractices.hasLicense ? '✅' : '❌'}
+            </span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-label">TypeScript</span>
+            <span class="metric-value ${getBooleanStatusClass(bestPractices.hasTypeScript)}">
+              ${bestPractices.hasTypeScript ? '✅' : '❌'}
+            </span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-label">Linting</span>
+            <span class="metric-value ${getBooleanStatusClass(bestPractices.hasLinting)}">
+              ${bestPractices.hasLinting ? '✅' : '❌'}
+            </span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-label">Testing</span>
+            <span class="metric-value ${getBooleanStatusClass(bestPractices.hasTesting)}">
+              ${bestPractices.hasTesting ? '✅' : '❌'}
+            </span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-label">CI/CD</span>
+            <span class="metric-value ${getBooleanStatusClass(bestPractices.hasCI)}">
+              ${bestPractices.hasCI ? '✅' : '❌'}
+            </span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-label">Documentation</span>
+            <span class="metric-value ${getBooleanStatusClass(bestPractices.hasDocs)}">
+              ${bestPractices.hasDocs ? '✅' : '❌'}
+            </span>
+          </div>
+        </div>`;
+}
+
+function generateCodeSmellsSection(codeSmells: string[]): string {
+  if (codeSmells.length === 0) return '';
+  
+  const smellItems = codeSmells.map(smell => `<li>${smell}</li>`).join('\n          ');
+  
+  return `
+      <div class="smells-list">
+        <h3>⚠️ Code Smells Detected</h3>
+        <ul>
+          ${smellItems}
+        </ul>
+      </div>`;
+}
+
+export function generateCodeQualityHTML(metrics: CodeQualityMetrics): string {
+  const gradeColor = getGradeColor(metrics.overallScore);
+  
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Code Quality Report</title>
+  <style>${generateHTMLStyles(gradeColor)}
   </style>
 </head>
 <body>
@@ -177,150 +400,8 @@ export function generateCodeQualityHTML(metrics: CodeQualityMetrics): string {
     </div>
     
     <div class="content">
-      <div class="metric-grid">
-        <div class="metric-card">
-          <h3>📊 Project Overview</h3>
-          <div class="metric-row">
-            <span class="metric-label">Total Files</span>
-            <span class="metric-value">${metrics.project.totalFiles}</span>
-          </div>
-          <div class="metric-row">
-            <span class="metric-label">Total Lines</span>
-            <span class="metric-value">${metrics.project.totalLines.toLocaleString()}</span>
-          </div>
-          <div class="metric-row">
-            <span class="metric-label">Code Lines</span>
-            <span class="metric-value">${metrics.project.totalCodeLines.toLocaleString()}</span>
-          </div>
-          <div class="metric-row">
-            <span class="metric-label">Comment Lines</span>
-            <span class="metric-value">${metrics.project.totalCommentLines.toLocaleString()}</span>
-          </div>
-        </div>
-
-        <div class="metric-card">
-          <h3>🔧 Code Complexity</h3>
-          <div class="metric-row">
-            <span class="metric-label">Average</span>
-            <span class="metric-value ${metrics.codeComplexity.averageComplexity > 15 ? 'status-bad' : 'status-good'}">
-              ${metrics.codeComplexity.averageComplexity}
-            </span>
-          </div>
-          <div class="metric-row">
-            <span class="metric-label">Maximum</span>
-            <span class="metric-value ${metrics.codeComplexity.maxComplexity > 30 ? 'status-bad' : 'status-good'}">
-              ${metrics.codeComplexity.maxComplexity}
-            </span>
-          </div>
-          <div class="metric-row">
-            <span class="metric-label">Files Over Threshold</span>
-            <span class="metric-value ${metrics.codeComplexity.filesOverThreshold > 0 ? 'status-warn' : 'status-good'}">
-              ${metrics.codeComplexity.filesOverThreshold}
-            </span>
-          </div>
-        </div>
-
-        <div class="metric-card">
-          <h3>🔨 Maintainability</h3>
-          <div class="metric-row">
-            <span class="metric-label">Score</span>
-            <span class="metric-value ${metrics.maintainability.score < 50 ? 'status-bad' : metrics.maintainability.score < 70 ? 'status-warn' : 'status-good'}">
-              ${metrics.maintainability.score}/100
-            </span>
-          </div>
-          <div class="metric-row">
-            <span class="metric-label">Code Smells</span>
-            <span class="metric-value ${metrics.maintainability.codeSmells.length > 0 ? 'status-warn' : 'status-good'}">
-              ${metrics.maintainability.codeSmells.length}
-            </span>
-          </div>
-        </div>
-
-        <div class="metric-card">
-          <h3>🧪 Test Coverage</h3>
-          <div class="metric-row">
-            <span class="metric-label">Has Tests</span>
-            <span class="metric-value ${metrics.testCoverage.hasTests ? 'status-good' : 'status-bad'}">
-              ${metrics.testCoverage.hasTests ? 'Yes' : 'No'}
-            </span>
-          </div>
-          <div class="metric-row">
-            <span class="metric-label">Test Files</span>
-            <span class="metric-value">${metrics.testCoverage.testFiles}</span>
-          </div>
-          <div class="metric-row">
-            <span class="metric-label">Estimated Coverage</span>
-            <span class="metric-value ${metrics.testCoverage.estimatedCoverage < 50 ? 'status-bad' : metrics.testCoverage.estimatedCoverage < 70 ? 'status-warn' : 'status-good'}">
-              ${metrics.testCoverage.estimatedCoverage}%
-            </span>
-          </div>
-        </div>
-
-        <div class="metric-card">
-          <h3>📦 Dependencies</h3>
-          <div class="metric-row">
-            <span class="metric-label">Total</span>
-            <span class="metric-value">${metrics.dependencies.total}</span>
-          </div>
-          <div class="metric-row">
-            <span class="metric-label">Production</span>
-            <span class="metric-value">${metrics.dependencies.production}</span>
-          </div>
-          <div class="metric-row">
-            <span class="metric-label">Development</span>
-            <span class="metric-value">${metrics.dependencies.development}</span>
-          </div>
-        </div>
-
-        <div class="metric-card">
-          <h3>✨ Best Practices</h3>
-          <div class="metric-row">
-            <span class="metric-label">README</span>
-            <span class="metric-value ${metrics.bestPractices.hasReadme ? 'status-good' : 'status-bad'}">
-              ${metrics.bestPractices.hasReadme ? '✅' : '❌'}
-            </span>
-          </div>
-          <div class="metric-row">
-            <span class="metric-label">License</span>
-            <span class="metric-value ${metrics.bestPractices.hasLicense ? 'status-good' : 'status-bad'}">
-              ${metrics.bestPractices.hasLicense ? '✅' : '❌'}
-            </span>
-          </div>
-          <div class="metric-row">
-            <span class="metric-label">TypeScript</span>
-            <span class="metric-value ${metrics.bestPractices.hasTypeScript ? 'status-good' : 'status-bad'}">
-              ${metrics.bestPractices.hasTypeScript ? '✅' : '❌'}
-            </span>
-          </div>
-          <div class="metric-row">
-            <span class="metric-label">Linting</span>
-            <span class="metric-value ${metrics.bestPractices.hasLinting ? 'status-good' : 'status-bad'}">
-              ${metrics.bestPractices.hasLinting ? '✅' : '❌'}
-            </span>
-          </div>
-          <div class="metric-row">
-            <span class="metric-label">Testing</span>
-            <span class="metric-value ${metrics.bestPractices.hasTesting ? 'status-good' : 'status-bad'}">
-              ${metrics.bestPractices.hasTesting ? '✅' : '❌'}
-            </span>
-          </div>
-          <div class="metric-row">
-            <span class="metric-label">CI/CD</span>
-            <span class="metric-value ${metrics.bestPractices.hasCI ? 'status-good' : 'status-bad'}">
-              ${metrics.bestPractices.hasCI ? '✅' : '❌'}
-            </span>
-          </div>
-        </div>
-      </div>
-
-      ${metrics.maintainability.codeSmells.length > 0 ? `
-      <div class="smells-list">
-        <h3>⚠️ Code Smells Detected</h3>
-        <ul>
-          ${metrics.maintainability.codeSmells.map(smell => `<li>${smell}</li>`).join('\n          ')}
-        </ul>
-      </div>
-      ` : ''}
+      <div class="metric-grid">${generateProjectOverviewCard(metrics.project)}${generateComplexityCard(metrics.codeComplexity)}${generateMaintainabilityCard(metrics.maintainability)}${generateTestCoverageCard(metrics.testCoverage)}${generateDependenciesCard(metrics.dependencies)}${generateBestPracticesCard(metrics.bestPractices)}
+      </div>${generateCodeSmellsSection(metrics.maintainability.codeSmells)}
     </div>
 
     <div class="footer">

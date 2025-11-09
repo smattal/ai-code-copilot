@@ -1,14 +1,14 @@
 {
   "project": {
     "name": "ai-code-copilot",
-    "totalFiles": 72,
-    "totalLines": 9515,
-    "totalCodeLines": 7790,
-    "totalCommentLines": 239,
-    "totalBlankLines": 1486,
+    "totalFiles": 73,
+    "totalLines": 9417,
+    "totalCodeLines": 7705,
+    "totalCommentLines": 241,
+    "totalBlankLines": 1471,
     "languages": {
       "HTML": 4,
-      "JavaScript": 1,
+      "JavaScript": 2,
       "TypeScript JSX": 2,
       "CSS": 2,
       "TypeScript": 63
@@ -18,10 +18,10 @@
     {
       "filePath": "code-quality-report.html",
       "language": "HTML",
-      "lines": 459,
-      "codeLines": 423,
+      "lines": 261,
+      "codeLines": 259,
       "commentLines": 0,
-      "complexity": 3,
+      "complexity": 1,
       "functions": 0,
       "classes": 0,
       "issues": [
@@ -453,14 +453,14 @@
     {
       "filePath": "src\\utils\\qualityReporter.ts",
       "language": "TypeScript",
-      "lines": 333,
-      "codeLines": 297,
-      "commentLines": 12,
-      "complexity": 41,
-      "functions": 2,
+      "lines": 414,
+      "codeLines": 363,
+      "commentLines": 14,
+      "complexity": 24,
+      "functions": 17,
       "classes": 0,
       "issues": [
-        "High complexity (41)"
+        "High complexity (24)"
       ]
     },
     {
@@ -840,17 +840,26 @@
       "functions": 0,
       "classes": 0,
       "issues": []
+    },
+    {
+      "filePath": "verify-docs.js",
+      "language": "JavaScript",
+      "lines": 19,
+      "codeLines": 13,
+      "commentLines": 0,
+      "complexity": 3,
+      "functions": 1,
+      "classes": 0,
+      "issues": [
+        "Contains console.log statements"
+      ]
     }
   ],
   "codeComplexity": {
-    "averageComplexity": 8.8,
-    "maxComplexity": 41,
+    "averageComplexity": 8.5,
+    "maxComplexity": 33,
     "filesOverThreshold": 14,
     "complexFiles": [
-      {
-        "file": "src\\utils\\qualityReporter.ts",
-        "complexity": 41
-      },
       {
         "file": "src\\cli\\handlers.ts",
         "complexity": 33
@@ -866,6 +875,10 @@
       {
         "file": "src\\utils\\verificationLoop.ts",
         "complexity": 30
+      },
+      {
+        "file": "src\\utils\\fileAnalyzer.ts",
+        "complexity": 28
       }
     ]
   },
@@ -879,7 +892,7 @@
       "High complexity (28)",
       "Uses \"any\" type",
       "High complexity (31)",
-      "High complexity (41)",
+      "High complexity (24)",
       "High complexity (32)",
       "High complexity (30)",
       "High complexity (25)"
@@ -891,8 +904,8 @@
   "testCoverage": {
     "hasTests": true,
     "testFiles": 30,
-    "testToCodeRatio": 0.71,
-    "estimatedCoverage": 71
+    "testToCodeRatio": 0.7,
+    "estimatedCoverage": 70
   },
   "dependencies": {
     "total": 15,
@@ -908,9 +921,9 @@
     "hasTypeScript": true,
     "hasLinting": true,
     "hasTesting": true,
-    "hasCI": false,
-    "hasDocs": false
+    "hasCI": true,
+    "hasDocs": true
   },
-  "overallScore": 68,
-  "grade": "B-"
+  "overallScore": 71,
+  "grade": "B"
 }
