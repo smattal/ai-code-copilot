@@ -307,7 +307,7 @@
         <span>🔍</span>
         <span>Code Quality Scan Report</span>
       </h1>
-      <div class="subtitle">Generated on 11/9/2025, 4:28:08 PM</div>
+      <div class="subtitle">Generated on 11/9/2025, 5:13:28 PM</div>
     </div>
     
     <div class="summary">
@@ -318,15 +318,15 @@
           <div class="stat-label">Files Scanned</div>
         </div>
         <div class="stat-card">
-          <div class="stat-value">19</div>
+          <div class="stat-value">33</div>
           <div class="stat-label">Total Issues</div>
         </div>
         <div class="stat-card">
-          <div class="stat-value">7</div>
+          <div class="stat-value">9</div>
           <div class="stat-label">High Severity</div>
         </div>
         <div class="stat-card">
-          <div class="stat-value">19</div>
+          <div class="stat-value">33</div>
           <div class="stat-label">Suggested Fixes</div>
         </div>
       </div>
@@ -337,7 +337,12 @@
           
             <div class="category-item">
               <span>accessibility</span>
-              <strong>3</strong>
+              <strong>4</strong>
+            </div>
+          
+            <div class="category-item">
+              <span>seo</span>
+              <strong>12</strong>
             </div>
           
             <div class="category-item">
@@ -346,23 +351,23 @@
             </div>
           
             <div class="category-item">
-              <span>design</span>
-              <strong>1</strong>
-            </div>
-          
-            <div class="category-item">
-              <span>seo</span>
-              <strong>3</strong>
-            </div>
-          
-            <div class="category-item">
               <span>security</span>
-              <strong>1</strong>
+              <strong>2</strong>
             </div>
           
             <div class="category-item">
               <span>performance</span>
+              <strong>3</strong>
+            </div>
+          
+            <div class="category-item">
+              <span>i18n</span>
               <strong>2</strong>
+            </div>
+          
+            <div class="category-item">
+              <span>design</span>
+              <strong>1</strong>
             </div>
           
         </div>
@@ -388,7 +393,7 @@
 
     <div id="fileCardsContainer">
     
-      <div class="file-card" data-type="tsx" data-has-issues="true" data-has-high="false">
+      <div class="file-card" data-type="tsx" data-has-issues="true" data-has-high="true">
         <div class="file-header">
           <div class="file-name">sample_input/react_components/user-profile-widget-0001.tsx</div>
           <div class="file-type">TSX</div>
@@ -396,13 +401,117 @@
 
         
           <div class="issues-section">
-            <h3>⚠️ Issues Found (3)</h3>
+            <h3>⚠️ Issues Found (15)</h3>
             
-              <div class="issue-item medium">
-                <span class="severity-badge severity-medium">medium</span>
+              <div class="issue-item high">
+                <span class="severity-badge severity-high">high</span>
                 <div class="issue-content">
                   <div class="issue-category">accessibility</div>
-                  <div class="issue-description">Image tag is missing alt text</div>
+                  <div class="issue-description">Image tag is missing alt text (WCAG 2.2 AA)</div>
+                </div>
+              </div>
+            
+              <div class="issue-item high">
+                <span class="severity-badge severity-high">high</span>
+                <div class="issue-content">
+                  <div class="issue-category">accessibility</div>
+                  <div class="issue-description">Missing lang attribute on &lt;html&gt; (WCAG 2.2 AA)</div>
+                </div>
+              </div>
+            
+              <div class="issue-item medium">
+                <span class="severity-badge severity-medium">medium</span>
+                <div class="issue-content">
+                  <div class="issue-category">seo</div>
+                  <div class="issue-description">Missing meta description</div>
+                </div>
+              </div>
+            
+              <div class="issue-item medium">
+                <span class="severity-badge severity-medium">medium</span>
+                <div class="issue-content">
+                  <div class="issue-category">seo</div>
+                  <div class="issue-description">Missing &lt;title&gt; tag</div>
+                </div>
+              </div>
+            
+              <div class="issue-item low">
+                <span class="severity-badge severity-low">low</span>
+                <div class="issue-content">
+                  <div class="issue-category">seo</div>
+                  <div class="issue-description">Missing JSON-LD schema</div>
+                </div>
+              </div>
+            
+              <div class="issue-item medium">
+                <span class="severity-badge severity-medium">medium</span>
+                <div class="issue-content">
+                  <div class="issue-category">seo</div>
+                  <div class="issue-description">Missing viewport meta tag</div>
+                </div>
+              </div>
+            
+              <div class="issue-item low">
+                <span class="severity-badge severity-low">low</span>
+                <div class="issue-content">
+                  <div class="issue-category">seo</div>
+                  <div class="issue-description">Missing Open Graph title (og:title)</div>
+                </div>
+              </div>
+            
+              <div class="issue-item low">
+                <span class="severity-badge severity-low">low</span>
+                <div class="issue-content">
+                  <div class="issue-category">seo</div>
+                  <div class="issue-description">Missing canonical link</div>
+                </div>
+              </div>
+            
+              <div class="issue-item high">
+                <span class="severity-badge severity-high">high</span>
+                <div class="issue-content">
+                  <div class="issue-category">structure</div>
+                  <div class="issue-description">Anchor opens in new tab without rel=&quot;noopener noreferrer&quot;</div>
+                </div>
+              </div>
+            
+              <div class="issue-item medium">
+                <span class="severity-badge severity-medium">medium</span>
+                <div class="issue-content">
+                  <div class="issue-category">security</div>
+                  <div class="issue-description">Missing Content-Security-Policy meta tag</div>
+                </div>
+              </div>
+            
+              <div class="issue-item low">
+                <span class="severity-badge severity-low">low</span>
+                <div class="issue-content">
+                  <div class="issue-category">performance</div>
+                  <div class="issue-description">Image missing width or height attributes</div>
+                </div>
+              </div>
+            
+              <div class="issue-item medium">
+                <span class="severity-badge severity-medium">medium</span>
+                <div class="issue-content">
+                  <div class="issue-category">i18n</div>
+                  <div class="issue-description">Missing locale/lang attribute on &lt;html&gt;</div>
+                </div>
+              </div>
+            
+              <div class="issue-item high">
+                <span class="severity-badge severity-high">high</span>
+                <div class="issue-content">
+                  <div class="issue-category">structure</div>
+                  <div class="issue-description">Invalid nesting: &lt;div&gt; inside &lt;p&gt;</div>
+                </div>
+              </div>
+            
+              <div class="issue-item high">
+                <span class="severity-badge severity-high">high</span>
+                <div class="issue-content">
+                  <div class="issue-category">structure</div>
+                  <div class="issue-description">Invalid nesting: &lt;button&gt; inside &lt;a&gt;</div>
                 </div>
               </div>
             
@@ -410,15 +519,7 @@
                 <span class="severity-badge severity-medium">medium</span>
                 <div class="issue-content">
                   <div class="issue-category">structure</div>
-                  <div class="issue-description">Anchor opens in new tab without rel=&quot;noopener&quot;</div>
-                </div>
-              </div>
-            
-              <div class="issue-item medium">
-                <span class="severity-badge severity-medium">medium</span>
-                <div class="issue-content">
-                  <div class="issue-category">structure</div>
-                  <div class="issue-description">Literal text &quot;View Profile&quot; may be missing localization</div>
+                  <div class="issue-description">Possible unclosed tags detected</div>
                 </div>
               </div>
             
@@ -426,11 +527,46 @@
 
           
             <div class="patches-section">
-              <h3>💡 Suggested Fixes (3)</h3>
+              <h3>💡 Suggested Fixes (15)</h3>
               
                 <div class="patch-item">
                   <pre class="patch-diff">Add alt attribute</pre>
                   <div class="patch-rationale">Provide descriptive alt text for accessibility.</div>
+                </div>
+              
+                <div class="patch-item">
+                  <pre class="patch-diff">Add lang attribute (e.g., lang=&quot;en&quot;)</pre>
+                  <div class="patch-rationale">Improves accessibility for screen readers.</div>
+                </div>
+              
+                <div class="patch-item">
+                  <pre class="patch-diff">Add meta description</pre>
+                  <div class="patch-rationale">Improves SEO.</div>
+                </div>
+              
+                <div class="patch-item">
+                  <pre class="patch-diff">Add &lt;title&gt;</pre>
+                  <div class="patch-rationale">Improves SEO.</div>
+                </div>
+              
+                <div class="patch-item">
+                  <pre class="patch-diff">Add JSON-LD schema</pre>
+                  <div class="patch-rationale">Improves SEO.</div>
+                </div>
+              
+                <div class="patch-item">
+                  <pre class="patch-diff">Add &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;</pre>
+                  <div class="patch-rationale">Essential for mobile SEO.</div>
+                </div>
+              
+                <div class="patch-item">
+                  <pre class="patch-diff">Add Open Graph meta tags</pre>
+                  <div class="patch-rationale">Improves social media sharing.</div>
+                </div>
+              
+                <div class="patch-item">
+                  <pre class="patch-diff">Add &lt;link rel=&quot;canonical&quot; href=&quot;...&quot;&gt;</pre>
+                  <div class="patch-rationale">Prevents duplicate content issues.</div>
                 </div>
               
                 <div class="patch-item">
@@ -439,8 +575,33 @@
                 </div>
               
                 <div class="patch-item">
-                  <pre class="patch-diff">Wrap text with t(&#039;key&#039;)</pre>
-                  <div class="patch-rationale">Use i18n for translatable UI strings.</div>
+                  <pre class="patch-diff">Add CSP meta tag</pre>
+                  <div class="patch-rationale">CSP helps prevent XSS.</div>
+                </div>
+              
+                <div class="patch-item">
+                  <pre class="patch-diff">Add width and height attributes</pre>
+                  <div class="patch-rationale">Prevents cumulative layout shift (CLS).</div>
+                </div>
+              
+                <div class="patch-item">
+                  <pre class="patch-diff">Add lang attribute</pre>
+                  <div class="patch-rationale">Improves i18n support.</div>
+                </div>
+              
+                <div class="patch-item">
+                  <pre class="patch-diff">Remove div from paragraph or use span</pre>
+                  <div class="patch-rationale">Block elements cannot be nested inside inline elements.</div>
+                </div>
+              
+                <div class="patch-item">
+                  <pre class="patch-diff">Remove button or anchor</pre>
+                  <div class="patch-rationale">Interactive elements should not be nested.</div>
+                </div>
+              
+                <div class="patch-item">
+                  <pre class="patch-diff">Ensure all tags are properly closed</pre>
+                  <div class="patch-rationale">Unclosed tags can break layout.</div>
                 </div>
               
             </div>
@@ -456,53 +617,125 @@
 
         
           <div class="issues-section">
-            <h3>⚠️ Issues Found (6)</h3>
+            <h3>⚠️ Issues Found (15)</h3>
+            
+              <div class="issue-item high">
+                <span class="severity-badge severity-high">high</span>
+                <div class="issue-content">
+                  <div class="issue-category">accessibility</div>
+                  <div class="issue-description">Missing lang attribute on &lt;html&gt; (WCAG 2.2 AA)</div>
+                </div>
+              </div>
+            
+              <div class="issue-item medium">
+                <span class="severity-badge severity-medium">medium</span>
+                <div class="issue-content">
+                  <div class="issue-category">seo</div>
+                  <div class="issue-description">Missing meta description</div>
+                </div>
+              </div>
+            
+              <div class="issue-item medium">
+                <span class="severity-badge severity-medium">medium</span>
+                <div class="issue-content">
+                  <div class="issue-category">seo</div>
+                  <div class="issue-description">Missing &lt;title&gt; tag</div>
+                </div>
+              </div>
+            
+              <div class="issue-item low">
+                <span class="severity-badge severity-low">low</span>
+                <div class="issue-content">
+                  <div class="issue-category">seo</div>
+                  <div class="issue-description">Missing JSON-LD schema</div>
+                </div>
+              </div>
+            
+              <div class="issue-item medium">
+                <span class="severity-badge severity-medium">medium</span>
+                <div class="issue-content">
+                  <div class="issue-category">seo</div>
+                  <div class="issue-description">Missing viewport meta tag</div>
+                </div>
+              </div>
+            
+              <div class="issue-item low">
+                <span class="severity-badge severity-low">low</span>
+                <div class="issue-content">
+                  <div class="issue-category">seo</div>
+                  <div class="issue-description">Missing Open Graph title (og:title)</div>
+                </div>
+              </div>
+            
+              <div class="issue-item low">
+                <span class="severity-badge severity-low">low</span>
+                <div class="issue-content">
+                  <div class="issue-category">seo</div>
+                  <div class="issue-description">Missing canonical link</div>
+                </div>
+              </div>
+            
+              <div class="issue-item high">
+                <span class="severity-badge severity-high">high</span>
+                <div class="issue-content">
+                  <div class="issue-category">structure</div>
+                  <div class="issue-description">Anchor opens in new tab without rel=&quot;noopener noreferrer&quot;</div>
+                </div>
+              </div>
+            
+              <div class="issue-item medium">
+                <span class="severity-badge severity-medium">medium</span>
+                <div class="issue-content">
+                  <div class="issue-category">security</div>
+                  <div class="issue-description">Missing Content-Security-Policy meta tag</div>
+                </div>
+              </div>
+            
+              <div class="issue-item low">
+                <span class="severity-badge severity-low">low</span>
+                <div class="issue-content">
+                  <div class="issue-category">performance</div>
+                  <div class="issue-description">Image missing lazy loading attribute</div>
+                </div>
+              </div>
+            
+              <div class="issue-item low">
+                <span class="severity-badge severity-low">low</span>
+                <div class="issue-content">
+                  <div class="issue-category">performance</div>
+                  <div class="issue-description">Image missing width or height attributes</div>
+                </div>
+              </div>
+            
+              <div class="issue-item medium">
+                <span class="severity-badge severity-medium">medium</span>
+                <div class="issue-content">
+                  <div class="issue-category">i18n</div>
+                  <div class="issue-description">Missing locale/lang attribute on &lt;html&gt;</div>
+                </div>
+              </div>
+            
+              <div class="issue-item high">
+                <span class="severity-badge severity-high">high</span>
+                <div class="issue-content">
+                  <div class="issue-category">structure</div>
+                  <div class="issue-description">Invalid nesting: &lt;div&gt; inside &lt;p&gt;</div>
+                </div>
+              </div>
+            
+              <div class="issue-item high">
+                <span class="severity-badge severity-high">high</span>
+                <div class="issue-content">
+                  <div class="issue-category">structure</div>
+                  <div class="issue-description">Invalid nesting: &lt;button&gt; inside &lt;a&gt;</div>
+                </div>
+              </div>
             
               <div class="issue-item medium">
                 <span class="severity-badge severity-medium">medium</span>
                 <div class="issue-content">
                   <div class="issue-category">structure</div>
-                  <div class="issue-description">Anchor opens in new tab without rel=&quot;noopener&quot;</div>
-                </div>
-              </div>
-            
-              <div class="issue-item high">
-                <span class="severity-badge severity-high">high</span>
-                <div class="issue-content">
-                  <div class="issue-category">structure</div>
-                  <div class="issue-description">Possible malformed JSX near text &quot;from&quot; (missing &quot;&gt;&quot; after tag?)</div>
-                </div>
-              </div>
-            
-              <div class="issue-item high">
-                <span class="severity-badge severity-high">high</span>
-                <div class="issue-content">
-                  <div class="issue-category">structure</div>
-                  <div class="issue-description">Possible malformed JSX near text &quot;className&quot; (missing &quot;&gt;&quot; after tag?)</div>
-                </div>
-              </div>
-            
-              <div class="issue-item high">
-                <span class="severity-badge severity-high">high</span>
-                <div class="issue-content">
-                  <div class="issue-category">structure</div>
-                  <div class="issue-description">Possible malformed JSX near text &quot;alt&quot; (missing &quot;&gt;&quot; after tag?)</div>
-                </div>
-              </div>
-            
-              <div class="issue-item high">
-                <span class="severity-badge severity-high">high</span>
-                <div class="issue-content">
-                  <div class="issue-category">structure</div>
-                  <div class="issue-description">Possible malformed JSX near text &quot;id&quot; (missing &quot;&gt;&quot; after tag?)</div>
-                </div>
-              </div>
-            
-              <div class="issue-item high">
-                <span class="severity-badge severity-high">high</span>
-                <div class="issue-content">
-                  <div class="issue-category">structure</div>
-                  <div class="issue-description">Possible malformed JSX near text &quot;target&quot; (missing &quot;&gt;&quot; after tag?)</div>
+                  <div class="issue-description">Possible unclosed tags detected</div>
                 </div>
               </div>
             
@@ -510,7 +743,42 @@
 
           
             <div class="patches-section">
-              <h3>💡 Suggested Fixes (6)</h3>
+              <h3>💡 Suggested Fixes (15)</h3>
+              
+                <div class="patch-item">
+                  <pre class="patch-diff">Add lang attribute (e.g., lang=&quot;en&quot;)</pre>
+                  <div class="patch-rationale">Improves accessibility for screen readers.</div>
+                </div>
+              
+                <div class="patch-item">
+                  <pre class="patch-diff">Add meta description</pre>
+                  <div class="patch-rationale">Improves SEO.</div>
+                </div>
+              
+                <div class="patch-item">
+                  <pre class="patch-diff">Add &lt;title&gt;</pre>
+                  <div class="patch-rationale">Improves SEO.</div>
+                </div>
+              
+                <div class="patch-item">
+                  <pre class="patch-diff">Add JSON-LD schema</pre>
+                  <div class="patch-rationale">Improves SEO.</div>
+                </div>
+              
+                <div class="patch-item">
+                  <pre class="patch-diff">Add &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;</pre>
+                  <div class="patch-rationale">Essential for mobile SEO.</div>
+                </div>
+              
+                <div class="patch-item">
+                  <pre class="patch-diff">Add Open Graph meta tags</pre>
+                  <div class="patch-rationale">Improves social media sharing.</div>
+                </div>
+              
+                <div class="patch-item">
+                  <pre class="patch-diff">Add &lt;link rel=&quot;canonical&quot; href=&quot;...&quot;&gt;</pre>
+                  <div class="patch-rationale">Prevents duplicate content issues.</div>
+                </div>
               
                 <div class="patch-item">
                   <pre class="patch-diff">Add rel=&quot;noopener noreferrer&quot;</pre>
@@ -518,28 +786,38 @@
                 </div>
               
                 <div class="patch-item">
-                  <pre class="patch-diff">Fix tag closing &gt; before text</pre>
-                  <div class="patch-rationale">Malformed JSX can break rendering.</div>
+                  <pre class="patch-diff">Add CSP meta tag</pre>
+                  <div class="patch-rationale">CSP helps prevent XSS.</div>
                 </div>
               
                 <div class="patch-item">
-                  <pre class="patch-diff">Fix tag closing &gt; before text</pre>
-                  <div class="patch-rationale">Malformed JSX can break rendering.</div>
+                  <pre class="patch-diff">Add loading=&quot;lazy&quot; to images below the fold</pre>
+                  <div class="patch-rationale">Improves initial page load performance.</div>
                 </div>
               
                 <div class="patch-item">
-                  <pre class="patch-diff">Fix tag closing &gt; before text</pre>
-                  <div class="patch-rationale">Malformed JSX can break rendering.</div>
+                  <pre class="patch-diff">Add width and height attributes</pre>
+                  <div class="patch-rationale">Prevents cumulative layout shift (CLS).</div>
                 </div>
               
                 <div class="patch-item">
-                  <pre class="patch-diff">Fix tag closing &gt; before text</pre>
-                  <div class="patch-rationale">Malformed JSX can break rendering.</div>
+                  <pre class="patch-diff">Add lang attribute</pre>
+                  <div class="patch-rationale">Improves i18n support.</div>
                 </div>
               
                 <div class="patch-item">
-                  <pre class="patch-diff">Fix tag closing &gt; before text</pre>
-                  <div class="patch-rationale">Malformed JSX can break rendering.</div>
+                  <pre class="patch-diff">Remove div from paragraph or use span</pre>
+                  <div class="patch-rationale">Block elements cannot be nested inside inline elements.</div>
+                </div>
+              
+                <div class="patch-item">
+                  <pre class="patch-diff">Remove button or anchor</pre>
+                  <div class="patch-rationale">Interactive elements should not be nested.</div>
+                </div>
+              
+                <div class="patch-item">
+                  <pre class="patch-diff">Ensure all tags are properly closed</pre>
+                  <div class="patch-rationale">Unclosed tags can break layout.</div>
                 </div>
               
             </div>
@@ -616,7 +894,7 @@
         
       </div>
     
-      <div class="file-card" data-type="html" data-has-issues="true" data-has-high="true">
+      <div class="file-card" data-type="html" data-has-issues="true" data-has-high="false">
         <div class="file-header">
           <div class="file-name">sample_input/web_components/internal-dashboard-0004.html</div>
           <div class="file-type">HTML</div>
@@ -624,69 +902,13 @@
 
         
           <div class="issues-section">
-            <h3>⚠️ Issues Found (8)</h3>
-            
-              <div class="issue-item high">
-                <span class="severity-badge severity-high">high</span>
-                <div class="issue-content">
-                  <div class="issue-category">accessibility</div>
-                  <div class="issue-description">Image tag is missing alt text (WCAG 2.2 AA)</div>
-                </div>
-              </div>
-            
-              <div class="issue-item high">
-                <span class="severity-badge severity-high">high</span>
-                <div class="issue-content">
-                  <div class="issue-category">accessibility</div>
-                  <div class="issue-description">Missing lang attribute on &lt;html&gt; (WCAG 2.2 AA)</div>
-                </div>
-              </div>
-            
-              <div class="issue-item low">
-                <span class="severity-badge severity-low">low</span>
-                <div class="issue-content">
-                  <div class="issue-category">seo</div>
-                  <div class="issue-description">Missing JSON-LD schema</div>
-                </div>
-              </div>
+            <h3>⚠️ Issues Found (1)</h3>
             
               <div class="issue-item medium">
                 <span class="severity-badge severity-medium">medium</span>
                 <div class="issue-content">
-                  <div class="issue-category">seo</div>
-                  <div class="issue-description">Missing viewport meta tag</div>
-                </div>
-              </div>
-            
-              <div class="issue-item low">
-                <span class="severity-badge severity-low">low</span>
-                <div class="issue-content">
-                  <div class="issue-category">seo</div>
-                  <div class="issue-description">Missing Open Graph title (og:title)</div>
-                </div>
-              </div>
-            
-              <div class="issue-item medium">
-                <span class="severity-badge severity-medium">medium</span>
-                <div class="issue-content">
-                  <div class="issue-category">security</div>
-                  <div class="issue-description">Missing Content-Security-Policy meta tag</div>
-                </div>
-              </div>
-            
-              <div class="issue-item low">
-                <span class="severity-badge severity-low">low</span>
-                <div class="issue-content">
-                  <div class="issue-category">performance</div>
-                  <div class="issue-description">Image missing lazy loading attribute</div>
-                </div>
-              </div>
-            
-              <div class="issue-item low">
-                <span class="severity-badge severity-low">low</span>
-                <div class="issue-content">
-                  <div class="issue-category">performance</div>
-                  <div class="issue-description">Image missing width or height attributes</div>
+                  <div class="issue-category">accessibility</div>
+                  <div class="issue-description">Image tag is missing alt text</div>
                 </div>
               </div>
             
@@ -694,46 +916,11 @@
 
           
             <div class="patches-section">
-              <h3>💡 Suggested Fixes (8)</h3>
+              <h3>💡 Suggested Fixes (1)</h3>
               
                 <div class="patch-item">
                   <pre class="patch-diff">Suggested fix: img-alt-missing</pre>
-                  <div class="patch-rationale">Auto-suggested improvement.</div>
-                </div>
-              
-                <div class="patch-item">
-                  <pre class="patch-diff">Suggested fix: lang-missing</pre>
-                  <div class="patch-rationale">Auto-suggested improvement.</div>
-                </div>
-              
-                <div class="patch-item">
-                  <pre class="patch-diff">Suggested fix: seo-missing-jsonld</pre>
-                  <div class="patch-rationale">Auto-suggested improvement.</div>
-                </div>
-              
-                <div class="patch-item">
-                  <pre class="patch-diff">Suggested fix: seo-missing-viewport</pre>
-                  <div class="patch-rationale">Auto-suggested improvement.</div>
-                </div>
-              
-                <div class="patch-item">
-                  <pre class="patch-diff">Suggested fix: seo-missing-og-title</pre>
-                  <div class="patch-rationale">Auto-suggested improvement.</div>
-                </div>
-              
-                <div class="patch-item">
-                  <pre class="patch-diff">Suggested fix: security-missing-csp</pre>
-                  <div class="patch-rationale">Auto-suggested improvement.</div>
-                </div>
-              
-                <div class="patch-item">
-                  <pre class="patch-diff">Suggested fix: perf-missing-lazy-loading</pre>
-                  <div class="patch-rationale">Auto-suggested improvement.</div>
-                </div>
-              
-                <div class="patch-item">
-                  <pre class="patch-diff">Suggested fix: perf-missing-image-dimensions</pre>
-                  <div class="patch-rationale">Auto-suggested improvement.</div>
+                  <div class="patch-rationale">Internal dashboard hero</div>
                 </div>
               
             </div>
